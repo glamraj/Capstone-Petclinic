@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  
+    - name: add group "tomcat"
+      group: name=tomcat
+
+    - name: add user "tomcat"
+      user: name=tomcat group=tomcat createhome=yes
+      become: true
+
+    - name: download Tomcat
+      command: cd /opt/extra
+      
+    - name: download Tomcat
+      command: get_url http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.38/bin/apache-tomcat-8.5.38.tar.gz
+
+    - name: Extract Tomcat archive
+      command: tar zxvf /opt/extra/apache-tomcat-8.5.38.tar.gz -C /opt/ creates=/opt/extra/apache-tomcat-8.5.38
+
+    - name: Change ownership of Tomcat installation
+      file: path=/opt/extra/apache-tomcat-8.5.38 owner=tomcat group=tomcat state=directory recurse=yes
