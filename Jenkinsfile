@@ -28,7 +28,7 @@ node{
     
     //get Maven home path
     def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-    sh "${mvnHome}/bin/mvn validate clean compile test-compile"
+    sh "${mvnHome}/bin/mvn validate clean compile test-compile test"
   }
 //    
 /*    stage('Anisble Playbook- Install Tomcat server'){
