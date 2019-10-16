@@ -53,7 +53,7 @@
     </properties>
 
     <dependencyManagement>
-        <!-- Import the maven Spring IO Platform Bill Of Materials (BOM) -->
+        <!-- Import the maven Spring IO Platform Bill Of Materials (BOM)  -->
         <dependencies>
             <dependency>
                 <groupId>io.spring.platform</groupId>
