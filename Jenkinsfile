@@ -17,8 +17,8 @@ node{
     stage('SCM Checkout'){
         
     //git 'https://github.com/glamraj/Petclinic.git'
-    //git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
-      git credentialsId: 'ra20080937wiprogitlab', url: 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
+    git 'https://topgear-training-gitlab.wipro.com/RA20080937/ILP_BookStoreWorkspace.git'
+    //git credentialsId: 'ra20080937wiprogitlab', url: 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
   }
 //
     stage('Maven Build'){ 
