@@ -7,35 +7,31 @@ node{
    //echo env.BUILD_NUMBER
    //def BUILD_ID = env.BUILD_NUMBER
     
-    stage('Introduction')       {
+   try     { /* try start brace */
+        
+        notifyBuild('STARTED')
+        
+        
+        stage('Introduction')    {
     
         echo 'Hello-- Welcome to The Petclinic Demo'
 
     }
     
-    try     {
-        notifyBuild('STARTED')
-        stage('CheckOut From GIT'){
+        stage('CheckOut From GIT')  {
+        
         git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
         echo '*************CheckedOut from GIT Successfully*************'
+        
     }
 
-/*    stage('SCM Checkout'){
+        stage('Maven Build')    {
     
-    //script {
-    //    properties([pipelineTriggers([pollSCM('H/2 * * * *')])])
-    //}
-    //git 'https://github.com/glamraj/Petclinic.git'
-    //git 'https://topgear-training-gitlab.wipro.com/RA20080937/ILP_BookStoreWorkspace.git'
-    git credentialsId: 'ra20080937wiprogitlab', url: 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
-  }
-*/  
-    stage('Maven Build'){ 
-    
-    //get Maven home path
-    def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-    sh "${mvnHome}/bin/mvn clean package install"
-  }
+        //get Maven home path
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+        sh "${mvnHome}/bin/mvn clean package install"
+        
+    }
     
 /*    stage('Anisble Playbook- Install Tomcat server'){
     sh label: '', script: 'cp tomcat-install.yml /opt/ansible/playbooks'
@@ -45,5 +41,38 @@ node{
     //sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/ansible/playbooks/tomcat-install.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
   }
  */
-  
+ 
+   } /* try end brace */
+   
+} /* node end brace */
+
+def notifyBuild(String buildStatus = 'STARTED') {
+    
+  // build status of null means successful
+  buildStatus =  buildStatus ?: 'SUCCESSFUL'
+
+  // Default values
+  def colorName = 'RED'
+  def colorCode = '#FF0000'
+  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def summary = "${subject} (${env.BUILD_URL})"
+
+  // Override default values based on build status
+  if (buildStatus == 'STARTED') {
+    color = 'YELLOW'
+    colorCode = '#FFFF00'
+  } else if (buildStatus == 'SUCCESSFUL') {
+    color = 'GREEN'
+    colorCode = '#00FF00'
+  } else if (buildStatus == 'UNSTABLE') {
+    color = 'warning'
+    colorCode = '#ffae42'
+  } else {
+    color = 'RED'
+    colorCode = '#FF0000'
+  }
+
+  // Send notifications
+ slackSend (color: colorCode, message: summary)
+ 
 }
