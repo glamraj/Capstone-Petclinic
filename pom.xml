@@ -357,7 +357,7 @@
                     <showWarnings>true</showWarnings>
                 </configuration>
             </plugin>
-<!-- rc           <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.13</version>
@@ -367,20 +367,20 @@
                     <!-- <argLine>-XX:-UseSplitVerifier ${jacoco.utAgentConfig}</argLine> -->
                     <!-- JDK 8 - bytecode verifier cannot be relaxed or disabled -->
                     <!-- to prevent runtime errors, OpenJPA tests are ignored -->
- <!--  rc                   <argLine>${jacoco.utAgentConfig}</argLine>
+                    <argLine>${jacoco.utAgentConfig}</argLine>
                     <includes>
                         <include>**/*Tests.java</include>
                     </includes>
                     <properties>
                         <!-- add SonarQube's JaCoCo listener to enable -->
                         <!-- gathering of code coverage metrics per test -->
-<!--   rc                       <property>
+                        <property>
                             <name>listener</name>
                             <value>org.sonar.java.jacoco.JUnitListener</value>
                         </property>
                     </properties>
                 </configuration>
-            </plugin> -->
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
