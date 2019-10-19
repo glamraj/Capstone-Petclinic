@@ -24,6 +24,22 @@ node{
         echo '*************CheckedOut from GIT Successfully*************'
         
     }
+    
+        stage ("Unit Testing")  {
+        
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+        
+        sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
+	    
+	    echo '*************Unit Test was Successful************'
+	    
+	    jacoco()
+
+        step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+        
+        echo '*************Report Generated************'    
+
+    }
 
         stage('Maven Build')    {
     
