@@ -44,6 +44,26 @@ node{
  
    } /* try end brace */
    
+   
+   catch (e) { /* catch start brace */
+   
+    // If there was an exception thrown, the build failed
+    currentBuild.result = "FAILED"
+    throw e
+
+   } /* catch end brace */
+    
+   finally { /* finally start brace */
+    // Success or failure, always send notifications
+    notifyBuild(currentBuild.result)
+    gitlabCommitStatus {
+       // The result of steps within this block is what will be sent to GitLab
+       echo "Commit Status to Gitlab"
+    }
+    
+  } /* finally end brace */
+
+   
 } /* node end brace */
 
 def notifyBuild(String buildStatus = 'STARTED') {
