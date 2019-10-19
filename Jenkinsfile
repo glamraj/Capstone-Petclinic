@@ -23,18 +23,18 @@ node{
     //git 'https://topgear-training-gitlab.wipro.com/RA20080937/ILP_BookStoreWorkspace.git'
     git credentialsId: 'ra20080937wiprogitlab', url: 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
   }
-//
+  
     stage('Maven Build'){ 
     
     //get Maven home path
     def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
     sh "${mvnHome}/bin/mvn clean package install"
   }
-//    
-/*    stage('Anisble Playbook- Install Tomcat server'){
+    
+    stage('Anisble Playbook- Install Tomcat server'){
     sh label: '', script: 'cp tomcat-install.yml /opt/ansible/playbooks'
     
-    sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/ansible/playbooks/tomcat-install.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-  } */
-        
+    sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible 2.4.2.0', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/ansible/playbooks/tomcat-install.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+  }
+  
 }
