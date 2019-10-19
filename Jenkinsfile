@@ -66,7 +66,7 @@ node{
    
 } /* node end brace */
 
-def notifyBuild(String buildStatus = 'STARTED') {
+def notifyBuild(String buildStatus) {
     
   // build status of null means successful
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
