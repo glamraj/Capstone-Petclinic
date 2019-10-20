@@ -65,19 +65,19 @@ node{
    catch (e) { /* catch start brace */
    
     // If there was an exception thrown, the build failed
-    currentBuild.result = "FAILED"
+    //currentBuild.result = "FAILED"
     throw e
-
+    echo "Catch Block"
    } /* catch end brace */
     
    finally { /* finally start brace */
     // Success or failure, always send notifications
     // notifyBuild(currentBuild.result)
-    gitlabCommitStatus {
+    //gitlabCommitStatus {
        // The result of steps within this block is what will be sent to GitLab
-       echo "Commit Status to Gitlab"
-    }
-    
+       //echo "Commit Status to Gitlab"
+    //}
+    echo "Finally Block"
   } /* finally end brace */
 
    
