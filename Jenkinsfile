@@ -72,7 +72,7 @@ node{
     
    finally { /* finally start brace */
     // Success or failure, always send notifications
-    notifyBuild(currentBuild.result)
+    // notifyBuild(currentBuild.result)
     gitlabCommitStatus {
        // The result of steps within this block is what will be sent to GitLab
        echo "Commit Status to Gitlab"
