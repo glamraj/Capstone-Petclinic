@@ -9,7 +9,7 @@ node{
     
    try     { /* try start brace */
         
-        notifyBuild('STARTED')
+        // notifyBuild('STARTED')
         
         
         stage('Introduction')    {
@@ -29,7 +29,8 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
+        //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
+        sh "${mvnHome}/bin/mvn test"
 	    
 	    echo '*************Unit Test was Successful************'
 	    
@@ -82,6 +83,7 @@ node{
    
 } /* node end brace */
 
+/*
 def notifyBuild(String buildStatus) {
     
   // build status of null means successful
@@ -112,3 +114,4 @@ def notifyBuild(String buildStatus) {
  slackSend (color: colorCode, message: summary)
  
 }
+*/
