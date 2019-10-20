@@ -36,15 +36,28 @@ node{
 	    
     }
     
-        stage('SonarQube PreBuild Analysis'){
+        stage('SonarQube PreBuild Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        withSonarQubeEnv('scan') {
+        withSonarQubeEnv('scan')    {
             sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
             echo '*************Prebuild Analysis was Successful************'
+        
         }
+        
     }
+    
+        stage("Quality Gate Check") {
+            timeout(time: 1, unit: 'HOURS') {
+              def qg = waitForQualityGate()
+              if (qg.status != 'OK') {
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                  echo '*************Quality Gate Check was Successful*************' 
+              }
+          }
+      }
+
 
 
         stage('Maven Package')    {
