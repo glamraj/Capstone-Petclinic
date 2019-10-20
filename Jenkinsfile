@@ -25,28 +25,33 @@ node{
         
     }
     
-        stage ("Unit Testing")  {
+        stage ("Maven Compile & Unit Testing")  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
         //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
-        sh "${mvnHome}/bin/mvn test"
+        sh "${mvnHome}/bin/mvn clean test compile"
 	    
 	    echo '*************Unit Test was Successful************'
 	    
-	    jacoco()
-
-        step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+    }
+    
+        stage('SonarQube PreBuild Analysis'){
+            
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        echo '*************Report Generated************'    
-
+        withSonarQubeEnv('scan') {
+            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
+            echo '*************Prebuild Analysis was Successful************'
+        }
     }
 
-        stage('Maven Build')    {
+
+        stage('Maven Package')    {
     
         //get Maven home path
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-        sh "${mvnHome}/bin/mvn clean package install"
+        sh "${mvnHome}/bin/mvn package"
         
     }
     
