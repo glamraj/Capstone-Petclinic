@@ -71,8 +71,11 @@ node{
     
         stage('Build Docker Imager'){
   
-    sh "docker build -t dockerglam/petclinic:${BUILD_ID} ."
-    sh "docker tag dockerglam/petclinic:${BUILD_ID} dockerglam/petclinic:latest"
+    sh "docker run dockerglam/extra"
+    sh "docker container ls -a"
+    
+    //sh "docker build -t dockerglam/petclinic:${BUILD_ID} ."
+    //sh "docker tag dockerglam/petclinic:${BUILD_ID} dockerglam/petclinic:latest"
     }
 
 /*    stage('Anisble Playbook- Install Tomcat server'){
