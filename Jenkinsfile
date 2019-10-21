@@ -6,7 +6,7 @@ node{
    
    //echo env.BUILD_NUMBER
    //def BUILD_ID = env.BUILD_NUMBER
-    
+   
    try     { /* try start brace */
         
         // notifyBuild('STARTED')
@@ -48,7 +48,7 @@ node{
         
     }
     
-        stage("Quality Gate Check") {
+     /*   stage("Quality Gate Check") {
             timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
               if (qg.status != 'Passed') {
@@ -56,9 +56,7 @@ node{
                   echo '*************Quality Gate Check was Successful*************' 
               }
           }
-      }
-
-
+      }*/
 
         stage('Maven Package')    {
     
