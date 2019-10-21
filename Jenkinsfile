@@ -36,7 +36,7 @@ node{
 	    
     }
     
-        stage('SonarQube PreBuild Analysis')    {
+    /*    stage('SonarQube PreBuild Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -48,7 +48,7 @@ node{
         
     }
     
-     /*   stage("Quality Gate Check") {
+        stage("Quality Gate Check") {
             timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
               if (qg.status != 'Passed') {
