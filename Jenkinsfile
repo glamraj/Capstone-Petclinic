@@ -65,18 +65,41 @@ node{
         //get Maven home path
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         sh "${mvnHome}/bin/mvn package"
+        echo '*************Package build was Successful************'
         
     }
     
     
         stage('Build Docker Imager'){
   
-    //sh "docker run dockerglam/extra"
-    //sh "docker container ls -a"
+        //sh "docker run dockerglam/extra"
+        //sh "docker container ls -a"
     
-    sh "docker build -t dockerglam/petclinic:${BUILD_ID} ."
-    sh "docker tag dockerglam/petclinic:${BUILD_ID} dockerglam/petclinic:latest"
+        sh "docker build -t dockerglam/capstone_petclinic:${BUILD_ID} ."
+        sh "docker tag dockerglam/capstone_petclinic:${BUILD_ID} dockerglam/capstone_petclinic:latest"
+        
+        echo '*************Docker Image build was Successful************'
     
+    }
+
+
+        stage('Push to Docker Hub'){    
+ 
+        withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')])
+        {
+    	sh "docker login -u ${dockerlogin} -p ${DockerHubPwd}"
+    	echo '*************Dockerhub login was Successful************'
+    	}
+        
+        //Push to Dockerhub
+        //sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
+        //sh 'docker push dockerglam/capstone_petclinic:latest'
+        //echo '*************Dockerhub Image Push was Successful************'
+    
+        //destroy local images
+        sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
+        sh 'docker rmi dockerglam/capstone_petclinic:latest'
+        echo '*************Local Image destroy was Successful************'
     }
 
 /*    stage('Anisble Playbook- Install Tomcat server'){
