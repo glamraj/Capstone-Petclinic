@@ -105,8 +105,14 @@ node{
     
         stage('Deploy to Dev Environment')  {
         
-        sh "docker container stop mypetclinic"
-        sh "docker container rm mypetclinic"
+        try {
+            sh "docker container stop mypetclinic"
+            sh "docker container rm mypetclinic"
+        }
+        catch(error)    {
+            //do nothing if container not running
+        }
+        
         echo '*************Removing previous container was Successful************'
         
         sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
