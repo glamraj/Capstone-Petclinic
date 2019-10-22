@@ -83,27 +83,32 @@ node{
     }
 
 
-        stage('Push to Docker Hub'){    
+        stage('Push to Docker Hub') {    
  
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')])
         {
-    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
+    	/*sh "docker login -u ${dockerlogin} -p ${dockerpass}"
     	echo '*************Dockerhub login was Successful************'
     	
     	//Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
-        sh 'docker push dockerglam/capstone_petclinic:latest'
+        sh "docker push dockerglam/capstone_petclinic:latest"
         echo '*************Dockerhub Image Push was Successful************'
         
     	}
         
-        
-    
         //destroy local images
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
-        sh 'docker rmi dockerglam/capstone_petclinic:latest'
-        echo '*************Local Image destroy was Successful************'
+        sh "docker rmi dockerglam/capstone_petclinic:latest"
+        echo '*************Local Image destroy was Successful************' */
     }
+    
+        stage('Deploy to Dev Environment')  {
+    
+        sh "docker run -d -p 9000:8080 --name myclinic dockerglam/capstone_petclinic:latest"
+        
+    }
+
 
 /*    stage('Anisble Playbook- Install Tomcat server'){
     sh label: '', script: 'cp tomcat-install.yml /opt/ansible/playbooks'
