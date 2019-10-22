@@ -89,12 +89,15 @@ node{
         {
     	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
     	echo '*************Dockerhub login was Successful************'
-    	}
-        
-        //Push to Dockerhub
+    	
+    	//Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
         sh 'docker push dockerglam/capstone_petclinic:latest'
         echo '*************Dockerhub Image Push was Successful************'
+        
+    	}
+        
+        
     
         //destroy local images
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
