@@ -83,11 +83,11 @@ node{
     }
 
 
-        stage('Push to Docker Hub') {    
+        /*stage('Push to Docker Hub') {    
  
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')])
         {
-    	/*sh "docker login -u ${dockerlogin} -p ${dockerpass}"
+    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
     	echo '*************Dockerhub login was Successful************'
     	
     	//Push to Dockerhub
@@ -100,8 +100,8 @@ node{
         //destroy local images
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
         sh "docker rmi dockerglam/capstone_petclinic:latest"
-        echo '*************Local Image destroy was Successful************' */
-    }
+        echo '*************Local Image destroy was Successful************' 
+    }*/
     
         stage('Deploy to Dev Environment')  {
     
