@@ -87,6 +87,8 @@ node{
     	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
     	echo '*************Dockerhub login was Successful************'
     	
+    	sh "docker pull dockerglam/petclinic:latest"
+    	
     	//Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
         sh "docker push dockerglam/capstone_petclinic:latest"
