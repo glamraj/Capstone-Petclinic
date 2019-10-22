@@ -105,7 +105,7 @@ node{
     
         stage('Deploy to Dev Environment')  {
     
-        sh "docker run -d -p 9000:8080 --name myclinic dockerglam/capstone_petclinic:latest"
+        sh "docker run -d -p 9090:8080 --name myclinic dockerglam/capstone_petclinic:latest"
         
     }
 
