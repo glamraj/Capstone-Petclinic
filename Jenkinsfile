@@ -102,7 +102,7 @@ node{
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
         
         echo '*************Local Image destroy was Successful************' 
-    }*/
+    }
     
         stage('Deploy to Dev Environment')  {
         
