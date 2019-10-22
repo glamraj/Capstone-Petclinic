@@ -24,7 +24,7 @@ node{
         
     }
     
-        stage ("Maven Compile & Unit Testing")  {
+       /* stage ("Maven Compile & Unit Testing")  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -35,7 +35,7 @@ node{
 	    
     }
     
-    /*    stage('SonarQube PreBuild Analysis')    {
+        stage('SonarQube PreBuild Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -61,7 +61,7 @@ node{
     
         //get Maven home path
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-        sh "${mvnHome}/bin/mvn package"
+        sh "${mvnHome}/bin/mvn clean package"
         echo '*************Package build was Successful************'
         
     }
