@@ -87,17 +87,18 @@ node{
     	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
     	echo '*************Dockerhub login was Successful************'
     	
-    	sh "docker pull dockerglam/petclinic:latest"
+    	//sh "docker pull dockerglam/petclinic:latest"
     	
     	//Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
+        echo '*************Dockerhub Image Push ${BUILD_ID} was Successful************'
         sh "docker push dockerglam/capstone_petclinic:latest"
-        echo '*************Dockerhub Image Push was Successful************'
+        echo '*************Dockerhub Image Push:latest was Successful************'
         
     	}
         
         //destroy local images
-        sh "docker rmi dockerglam/capstone_petclinic:latest" 
+        sh "docker rmi dockerglam/capstone_petclinic:latest"
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
         
         echo '*************Local Image destroy was Successful************' 
