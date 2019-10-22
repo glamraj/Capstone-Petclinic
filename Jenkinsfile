@@ -88,6 +88,7 @@ node{
     	echo '*************Dockerhub login was Successful************'
     	
     	//sh "docker pull dockerglam/petclinic:latest"
+    	//sh "docker rmi docker.io/dockerglam/petclinic:latest"
     	
     	//Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
