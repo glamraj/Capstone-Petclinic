@@ -76,6 +76,7 @@ node{
     
     sh "docker build -t dockerglam/petclinic:${BUILD_ID} ."
     sh "docker tag dockerglam/petclinic:${BUILD_ID} dockerglam/petclinic:latest"
+    
     }
 
 /*    stage('Anisble Playbook- Install Tomcat server'){
