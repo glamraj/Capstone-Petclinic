@@ -92,9 +92,9 @@ node{
     	}
         
         //Push to Dockerhub
-        //sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
-        //sh 'docker push dockerglam/capstone_petclinic:latest'
-        //echo '*************Dockerhub Image Push was Successful************'
+        sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
+        sh 'docker push dockerglam/capstone_petclinic:latest'
+        echo '*************Dockerhub Image Push was Successful************'
     
         //destroy local images
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
