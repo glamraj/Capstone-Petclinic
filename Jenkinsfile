@@ -10,9 +10,8 @@ node{
    try     { /* try start brace */
         
         // notifyBuild('STARTED')
-        
-        
-        stage('Introduction')    {
+
+        stage('Start')    {
     
         echo 'Hello-- Welcome to The Petclinic Demo'
 
@@ -21,7 +20,7 @@ node{
         stage('CheckOut From GIT')  {
         
         git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
-        echo '*************CheckedOut from GIT Successfully*************'
+        echo '*************CheckedOut from GIT Was Successful*************'
         
     }
     
@@ -58,8 +57,6 @@ node{
           }
       }*/
 
-     
-     
         stage('Maven Package')    {
     
         //get Maven home path
@@ -83,7 +80,7 @@ node{
     }
 
 
-        /*stage('Push to Docker Hub') {    
+        stage('Push to Docker Hub') {    
  
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')])
         {
@@ -102,7 +99,7 @@ node{
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
         
         echo '*************Local Image destroy was Successful************' 
-    }*/
+    }
     
         stage('Deploy to Dev Environment')  {
         
