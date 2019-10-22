@@ -87,7 +87,7 @@ node{
  
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')])
         {
-    	sh "docker login -u ${dockerlogin} -p ${DockerHubPwd}"
+    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
     	echo '*************Dockerhub login was Successful************'
     	}
         
