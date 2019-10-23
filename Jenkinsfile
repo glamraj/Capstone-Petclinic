@@ -110,9 +110,11 @@ node{
         stage('Deploy to Dev Environment')  {
         
         try {
+            //pre-requsites for deploying to dev environment
+            sh "docker pull dockerglam/capstone_petclinic:latest"
+            
             sh "docker container stop mypetclinic"
             sh "docker container rm mypetclinic"
-            sh "docker pull dockerglam/capstone_petclinic:latest"
         }
         catch(error)    {
             //do nothing if container not running
