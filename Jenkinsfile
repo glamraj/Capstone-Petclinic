@@ -97,7 +97,7 @@ node{
         
         try {
             //destroy local images
-        sh "docker rmi dockerglam/capstone_petclinic:latest"
+        //sh "docker rmi dockerglam/capstone_petclinic:latest"
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
         
         }
@@ -111,7 +111,7 @@ node{
         
         try {
             //pre-requsites for deploying to dev environment
-            sh "docker pull dockerglam/capstone_petclinic:latest"
+            //sh "docker pull dockerglam/capstone_petclinic:latest"
             
             sh "docker container stop mypetclinic"
             sh "docker container rm mypetclinic"
