@@ -66,6 +66,16 @@ node{
         
     }*/
     
+        stage('Docker Hub Login'){
+ 
+        withCredentials([string(credentialsId: 'DockerPwd', variable: 'DockerHubPwd')]) {
+        sh "docker login -u dockerglam -p ${DockerHubPwd}"
+        
+        echo '*************Dockerhub Login was Successful************'
+        
+        }
+        
+    }
     
         stage('Build Docker Imager'){
   
@@ -80,23 +90,17 @@ node{
     }
 
 
-        stage('Push to Docker Hub') {    
+        stage('Image Push to Docker Hub') {    
  
-        withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
-            
-    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
-    	echo '*************Dockerhub login was Successful************'
-    	
-    	//Push to Dockerhub
+        //Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
-        echo '*************Dockerhub Image Push ${BUILD_ID} was Successful************'
+        echo '*************Image Current Build Dockerhub Push was Successful************'
         sh "docker push dockerglam/capstone_petclinic:latest"
-        echo '*************Dockerhub Image Push:latest was Successful************'
-        
-    	}
+        echo '*************Image:latest Dockerhub Push was Successful************'
         
         try {
-            //destroy local images
+
+        //destroy local images
         //sh "docker rmi dockerglam/capstone_petclinic:latest"
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
         
