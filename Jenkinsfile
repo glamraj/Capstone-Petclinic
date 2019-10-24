@@ -92,23 +92,27 @@ node{
 
         stage('Image Push to Docker Hub') {    
  
+        try {
+     
         //Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
         echo '*************Image Current Build Dockerhub Push was Successful************'
+        
         sh "docker push dockerglam/capstone_petclinic:latest"
         echo '*************Image:latest Dockerhub Push was Successful************'
-        
-        try {
-
+     
         //destroy local images
         //sh "docker rmi dockerglam/capstone_petclinic:latest"
         sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
+        echo '*************Local Image destroy was Successful************' 
         
         }
         catch(error)    {
-            //do nothing if Image not found
+            //Delete the latest build Image from Dockerhub in case of any error
+            sh "docker rmi docker.io/dockerglam/petclinic:${BUILD_ID}"
+            echo '*************Destorying Lates Build Image was Successful ERROR-case************' 
         }
-        echo '*************Local Image destroy was Successful************' 
+
     }
     
         stage('Deploy to Dev Environment')  {
