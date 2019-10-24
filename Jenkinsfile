@@ -145,7 +145,7 @@ node{
         sshagent(['Ansible_SSh']) {
         
         def dockerRun = 'docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest'
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@15:206.123.211 ${dockerRun}"
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.123.211 ${dockerRun}"
         //sh "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp} ${dockerRmI}"
 
         }
