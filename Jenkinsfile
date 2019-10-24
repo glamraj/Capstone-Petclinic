@@ -138,6 +138,26 @@ node{
         
     }
 
+        stage('Deploy to AWS Prod Environment')  {
+    
+        try {
+            
+        sshagent(['Ansible_SSh']) {
+        
+        def dockerRun = 'docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest'
+        sh "ssh -o StrictHostKeyChecking=no ec2-user@15:206.123.211 ${dockerRun}"
+        //sh "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp} ${dockerRmI}"
+
+        }
+        
+        } //try brace
+        
+        catch(error){
+		//  do nothing if there is an exception
+	    }
+
+    }
+
 
 /*    stage('Anisble Playbook- Install Tomcat server'){
     sh label: '', script: 'cp tomcat-install.yml /opt/ansible/playbooks'
