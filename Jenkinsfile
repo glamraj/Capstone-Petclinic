@@ -28,7 +28,7 @@ node{
     
         try {
             
-        sshagent(['Ansible_SSh']) {
+        sshagent(['AWS-ec2-user']) {
         
         def dockerRun = 'docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest'
         sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.123.211 ${dockerRun}"
