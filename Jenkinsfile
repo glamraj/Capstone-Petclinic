@@ -67,12 +67,12 @@ node{
     }*/
     
         stage('Docker Hub Login'){
- 
-        withCredentials([string(credentialsId: 'DockerPwd', variable: 'DockerHubPwd')]) {
-        sh "docker login -u dockerglam -p ${DockerHubPwd}"
-        
-        echo '*************Dockerhub Login was Successful************'
-        
+            
+        withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
+            
+    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
+    	echo '*************Dockerhub login was Successful************'
+
         }
         
     }
