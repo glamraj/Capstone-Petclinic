@@ -58,23 +58,21 @@ node{
         stage("Quality Gate Check") {
             timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
+              
+              sleep(10)
+              
               if (qg.status != 'OK') {
-                  //error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
                   echo "QG Status: ${qg.status}"
-                  echo '*************Quality Gate Check was Successful*************' 
-              }
-            /*
-              if (qg.status = 'Passed')    {
+                  echo '*************Quality Gate Check was Unsuccessful*************' 
+            }
+              
+              else  {
                   
                   echo '*************Quality Gate Check was Successful*************'
-                  
-              }
-              else  {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                  echo '*************Quality Gate Check was Unsuccessful*************'
-              }*/
-          }
-      }
+            }
+        }
+    }
     
         /*stage('Docker Hub Login'){
             
