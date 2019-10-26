@@ -58,6 +58,12 @@ node{
         stage("Quality Gate Check") {
             timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
+              if (qg.status = 'OK') {
+                  //error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                  echo "QG Status: ${qg.status}"
+                  echo '*************Quality Gate Check was Successful*************' 
+              }
+            /*
               if (qg.status = 'Passed')    {
                   
                   echo '*************Quality Gate Check was Successful*************'
@@ -66,7 +72,7 @@ node{
               else  {
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
                   echo '*************Quality Gate Check was Unsuccessful*************'
-              }
+              }*/
           }
       }
     
