@@ -29,13 +29,13 @@ node{
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
         //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
-        sh "${mvnHome}/bin/mvn clean test compile"
+        sh "${mvnHome}/bin/mvn clean package"
 	    
 	    echo '*************Unit Test was Successful************'
 	    
     }
     
-        /*stage('SonarQube PreBuild Analysis')    {
+        stage('SonarQube PreBuild Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -47,7 +47,7 @@ node{
         
     }
     
-        stage("Quality Gate Check") {
+        /*stage("Quality Gate Check") {
             timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
               if (qg.status != 'Passed') {
