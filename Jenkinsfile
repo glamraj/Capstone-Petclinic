@@ -24,7 +24,7 @@ node{
         
     }
     
-        /*stage ("Maven Compile & Unit Testing")  {
+        stage ("Maven Compile & Unit Testing")  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -33,7 +33,7 @@ node{
 	    
 	    echo '*************Unit Test, Compile, Build & Package was Successful************'
 	    
-    }*/
+    }
     
         stage('SonarQube PreBuild Analysis')    {
             
