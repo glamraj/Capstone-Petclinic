@@ -42,37 +42,33 @@ node{
         withSonarQubeEnv('scan')    {
             sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
             
-            echo '*************Prebuild Analysis was Successful************'
+            echo '*************Sonar Code Quality Analysis was Successful************'
             
             jacoco()
 
             step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
         
-            echo '*************Report was Generated************'    
+            echo '*************Jacoco Report was Generated************'
 
         
         }
         
     }
     
-        /*stage("Quality Gate Check") {
+        stage("Quality Gate Check") {
             timeout(time: 1, unit: 'HOURS') {
               def qg = waitForQualityGate()
-              if (qg.status != 'Passed') {
+              if (qg.status = 'Passed')    {
+                  
+                  echo '*************Quality Gate Check was Successful*************'
+                  
+              }
+              else  {
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                  echo '*************Quality Gate Check was Successful*************' 
+                  echo '*************Quality Gate Check was Unsuccessful*************'
               }
           }
       }
-
-        stage('Maven Package')    {
-    
-        //get Maven home path
-        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-        sh "${mvnHome}/bin/mvn clean package"
-        echo '*************Package build was Successful************'
-        
-    }*/
     
         /*stage('Docker Hub Login'){
             
