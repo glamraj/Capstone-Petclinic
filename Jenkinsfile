@@ -24,27 +24,7 @@ node{
         
     }
     
-    stage('Deploy to AWS Prod Environment')  {
-    
-        try {
-            
-        sshagent(['AWS-ec2-user']) {
-        
-        def dockerRun = 'docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest'
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.123.211 ${dockerRun}"
-        //sh "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp} ${dockerRmI}"
-        
-        echo '*************Deployment in AWS PROD was Successful************'
-        }
-        
-        } //try brace
-        
-        catch(error){
-		//  do nothing if there is an exception
-	    }
-
-    }
-       /* stage ("Maven Compile & Unit Testing")  {
+        stage ("Maven Compile & Unit Testing")  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -55,7 +35,7 @@ node{
 	    
     }
     
-        stage('SonarQube PreBuild Analysis')    {
+        /*stage('SonarQube PreBuild Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -86,7 +66,7 @@ node{
         
     }*/
     
-        stage('Docker Hub Login'){
+        /*stage('Docker Hub Login'){
             
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
             
@@ -158,11 +138,11 @@ node{
         
     }
 
-        stage('Deploy to AWS Prod Environment')  {
+        /*stage('Deploy to AWS Prod Environment')  {
     
         try {
             
-        sshagent(['Ansible_SSh']) {
+        sshagent(['AWS-ec2-user']) {
         
         def dockerRun = 'docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest'
         sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.123.211 ${dockerRun}"
@@ -177,7 +157,7 @@ node{
 		//  do nothing if there is an exception
 	    }
 
-    }
+    }*/
 
 
 /*    stage('Anisble Playbook- Install Tomcat server'){
