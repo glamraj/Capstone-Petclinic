@@ -31,7 +31,7 @@ node{
         //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
         sh "${mvnHome}/bin/mvn clean package"
 	    
-	    echo '*************Unit Test was Successful************'
+	    echo '*************Unit Test, Compile, Build & Package was Successful************'
 	    
     }
     
@@ -41,7 +41,15 @@ node{
         
         withSonarQubeEnv('scan')    {
             sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
+            
             echo '*************Prebuild Analysis was Successful************'
+            
+            jacoco()
+
+            step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+        
+            echo '*************Report was Generated************'    
+
         
         }
         
