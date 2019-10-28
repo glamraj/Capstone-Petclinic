@@ -24,7 +24,7 @@ node{
         
     }
     
-        stage ("Maven Compile & Unit Testing - Package")  {
+        stage ("Maven - Package")  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -144,6 +144,7 @@ node{
     
     catch(error)    {  //Dockerhub versioning catch start brace
         // To Prevent Jenkins Job failure in case in case Dockerhub is not connecting..
+        echo '*************Dockerhub versioning was Unsuccessful due to Dockerhub connection failure************'
         
     }   //Dockerhub catch end brace
     
