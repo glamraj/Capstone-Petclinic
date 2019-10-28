@@ -24,7 +24,7 @@ node{
         
     }
     
-        stage ("Maven Compile & Unit Testing")  {
+        stage ("Maven Compile & Unit Testing - Package")  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -35,7 +35,7 @@ node{
 	    
     }
     
-        stage('SonarQube PreBuild Analysis')    {
+        stage('SonarQube Code Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -75,7 +75,7 @@ node{
         }
     }
     
-        /*stage('Docker Hub Login'){
+        stage('Docker Hub Login'){
             
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
             
@@ -196,7 +196,7 @@ node{
        // The result of steps within this block is what will be sent to GitLab
        //echo "Commit Status to Gitlab"
     //}
-    echo "Finally Block"
+    echo "Final Block - No error"
   } /* finally end brace */
 
    
