@@ -75,17 +75,6 @@ node{
         }
     }
     
-        stage('Docker Hub Login'){
-            
-        withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
-            
-    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
-    	echo '*************Dockerhub login was Successful************'
-
-        }
-        
-    }
-    
         stage('Build Docker Imager'){
   
         //sh "docker run dockerglam/extra"
@@ -97,12 +86,46 @@ node{
         echo '*************Docker Image build was Successful************'
     
     }
+    
+    stage('Deploy to Dev Environment')  {
+        
+        try {
+            //pre-requsites for deploying to dev environment
+            //sh "docker pull dockerglam/capstone_petclinic:latest"
+            
+            sh "docker container stop mypetclinic"
+            sh "docker container rm mypetclinic"
+            
+            echo '*************Removing previous container was Successful************'
+            
+        }
+        catch(error)    {
+            //do nothing if container not running
+        }
+        
+        sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
+        
+        echo '*************Petclinic container deployment was Successful************'
+        
+        //sh "curl http://localhost:9090/petclinic"
+        
+    }
+    
+    try { //Dockerhub Versioning try start brace
+    
+        stage('Docker Hub Login')   {
+        
+        withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
+            
+    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
+    	echo '*************Dockerhub login was Successful************'
 
+        }
+        
+    }
 
         stage('Image Push to Docker Hub') {    
  
-        try {
-     
         //Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
         echo '*************Image Current Build Dockerhub Push was Successful************'
@@ -112,40 +135,18 @@ node{
      
         //destroy local images
         //sh "docker rmi dockerglam/capstone_petclinic:latest"
-        sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
-        echo '*************Local Image destroy was Successful************' 
+        //sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
+        //echo '*************Local Image destroy was Successful************'
         
-        }
-        catch(error)    {
-            //Delete the latest build Image from Dockerhub in case of any error
-            sh "docker rmi docker.io/dockerglam/petclinic:${BUILD_ID}"
-            echo '*************Destorying Lates Build Image was Successful ERROR-case************' 
-        }
-
     }
     
-        stage('Deploy to Dev Environment')  {
+    } //Dockerhub versioning try end brace
+    
+    catch(error)    {  //Dockerhub versioning catch start brace
+        // To Prevent Jenkins Job failure in case in case Dockerhub is not connecting..
         
-        try {
-            //pre-requsites for deploying to dev environment
-            //sh "docker pull dockerglam/capstone_petclinic:latest"
-            
-            sh "docker container stop mypetclinic"
-            sh "docker container rm mypetclinic"
-        }
-        catch(error)    {
-            //do nothing if container not running
-        }
-        
-        echo '*************Removing previous container was Successful************'
-        
-        sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
-        
-        echo '*************Petclinic container deployment was Successful************'
-        
-        //sh "curl http://localhost:9090/petclinic"
-        
-    }
+    }   //Dockerhub catch end brace
+    
 
         /*stage('Deploy to AWS Prod Environment')  {
     
