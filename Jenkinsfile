@@ -105,7 +105,7 @@ node{
         
         sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
         
-        echo '*************Petclinic container deployment was Successful************'
+        echo '*************Petclinic container deployment was Successful :) ************'
         
         //sh "curl http://localhost:9090/petclinic"
         
