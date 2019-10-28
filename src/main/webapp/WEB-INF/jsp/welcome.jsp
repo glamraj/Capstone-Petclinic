@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <jsp:include page="fragments/bodyHeader.jsp"/>
-    <h1> Welcome to the Petclinic. </h1>
+    <h1> Welcome to the Petclinic </h1>
     <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
     <img src="${petsImage}"/>
 
