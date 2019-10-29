@@ -12,11 +12,16 @@
 <body>
 <div class="container">
     <jsp:include page="fragments/bodyHeader.jsp"/>
+
+    <h2> Welcome to the Petclinic </h2>
+    <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
+    <img src="${petsImage}"/>
     
-    <h6 align ="right"> 
+    <h6 align ="justify"> 
       <font color="black" bgcolor="white">
         <script language="javascript">
-        var today = new Date();
+        //var today = new Date();
+        var today = Date.now();
         document.write(today);
         </script>
         <strong>
@@ -24,9 +29,6 @@
         </strong>           
       </font>
     </h6>
-    <h2> Welcome to the Petclinic </h2>
-    <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
-    <img src="${petsImage}"/>
 
     <jsp:include page="fragments/footer.jsp"/>
 
