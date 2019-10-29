@@ -39,12 +39,12 @@ node{
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
         //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
-        sh "${mvnHome}/bin/mvn clean package"
+        sh "${mvnHome}/bin/mvn clean package deploy"
 	    
 	    echo '*************Unit Test, Compile, Build & Package was Successful************'
 	    
     }
-    
+    /*
         stage('Uploading to Artifactory') {
                withEnv( ["PATH+MAVEN=${tool MAVEN_HOME}/bin/"] ) {
                                  script {
@@ -55,7 +55,7 @@ node{
                                         }
                     }
                 
-    }
+    } */
 
     
     /*    stage('SonarQube Code Analysis')    {
