@@ -35,7 +35,7 @@ node{
 	    
     }
     
-        stage('SonarQube Code Analysis')    {
+    /*    stage('SonarQube Code Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -74,7 +74,7 @@ node{
             }
         }
     }
-    
+    */
         stage('Build Docker Imager'){
   
         //sh "docker run dockerglam/extra"
@@ -111,6 +111,7 @@ node{
         
     }
     
+    /*
     try { //Dockerhub Versioning try start brace
     
         stage('Docker Hub Login')   {
@@ -147,6 +148,8 @@ node{
         echo '*************Dockerhub versioning was Unsuccessful due to Dockerhub connection failure************'
         
     }   //Dockerhub catch end brace
+    
+    */
     
 
         /*stage('Deploy to AWS Prod Environment')  {
