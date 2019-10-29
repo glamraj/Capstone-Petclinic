@@ -504,7 +504,7 @@
 
   <repository>
 
-    <id>releases</id>
+    <id>deployment</id>
 
     <!-- CHANGE HERE by your team nexus server -->
 
@@ -514,7 +514,7 @@
 
   <snapshotRepository>
 
-    <id>snapshots</id>
+    <id>deployment</id>
 
     <!-- CHANGE HERE by your team nexus server -->
 
