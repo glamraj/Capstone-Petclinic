@@ -499,6 +499,30 @@
             </build>
         </profile>
     </profiles>
+    
+<distributionManagement>
+
+  <repository>
+
+    <id>releases</id>
+
+    <!-- CHANGE HERE by your team nexus server -->
+
+    <url>http://localhost:8081/repository/maven-releases/</url>
+
+  </repository>
+
+  <snapshotRepository>
+
+    <id>snapshots</id>
+
+    <!-- CHANGE HERE by your team nexus server -->
+
+    <url>http://localhost:8081/repository/maven-snapshots/</url>
+
+  </snapshotRepository>
+
+</distributionManagement>
 
     <url>demopetclinic</url>
 </project>
