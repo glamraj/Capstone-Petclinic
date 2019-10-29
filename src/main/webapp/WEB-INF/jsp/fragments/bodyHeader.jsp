@@ -15,7 +15,7 @@
                     class="icon-th-list"></i> Veterinarians</a></li>
             <li style="width: 110px;"><a href="<spring:url value="/oups.html" htmlEscape="true" />"
                                          title="trigger a RuntimeException to see how it is handled"><i
-                    class="icon-warning-sign"></i> Exception Check</a></li>
+                    class="icon-warning-sign"></i> Exception</a></li>
         </ul>
     </div>
 </div>
