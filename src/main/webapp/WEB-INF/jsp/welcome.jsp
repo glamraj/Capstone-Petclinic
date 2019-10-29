@@ -13,7 +13,7 @@
 <div class="container">
     <jsp:include page="fragments/bodyHeader.jsp"/>
     
-    <h4 align ="center"> 
+    <h6 align ="right"> 
       <font color="black" bgcolor="white">
         <script language="javascript">
         var today = new Date();
@@ -23,7 +23,7 @@
          <span id="time"></span>
         </strong>           
       </font>
-    </h4>
+    </h6>
     <h2> Welcome to the Petclinic </h2>
     <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
     <img src="${petsImage}"/>
