@@ -18,10 +18,9 @@
     <img src="${petsImage}"/>
     
     <h6 align ="justify"> 
-      <font color="black" bgcolor="white">
+      <font color="black" bgcolor="right">
         <script language="javascript">
-        //var today = new Date();
-        var today = Date.now();
+        var today = new Date();
         document.write(today);
         </script>
         <strong>
