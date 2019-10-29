@@ -46,7 +46,7 @@ node{
     }
     
         stage('Uploading to Artifactory') {
-               withEnv( ["PATH+MAVEN=${tool mvn_version}/bin/"] ) {
+               withEnv( ["PATH+MAVEN=${tool MAVEN_HOME}/bin/"] ) {
                                  script {
                                         def server = Artifactory.server 'artifact' 
                                         server.bypassProxy = true
