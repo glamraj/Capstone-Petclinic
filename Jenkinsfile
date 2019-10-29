@@ -7,6 +7,16 @@ node{
    //echo env.BUILD_NUMBER
    //def BUILD_ID = env.BUILD_NUMBER
    
+   def uploadSpec = """{
+           "files": [
+               {
+               "pattern": "target/petclinic.war",
+                   "target": "libs-snapshot-local/com/workout/BSP/1.1.${BUILD_NUMBER}-petclinic-SNAPSHOT/"
+               }
+               ]
+    }"""
+
+   
    try     { /* try start brace */
         
         // notifyBuild('STARTED')
@@ -34,6 +44,19 @@ node{
 	    echo '*************Unit Test, Compile, Build & Package was Successful************'
 	    
     }
+    
+        stage('Uploading to Artifactory') {
+               withEnv( ["PATH+MAVEN=${tool mvn_version}/bin/"] ) {
+                                 script {
+                                        def server = Artifactory.server 'artifact' 
+                                        server.bypassProxy = true
+                                        def buildInfo = server.upload spec: uploadSpec
+                                        echo '*************Uploaded artifacts to Artifactory was Successful*************'
+                                        }
+                    }
+                
+    }
+
     
     /*    stage('SonarQube Code Analysis')    {
             
