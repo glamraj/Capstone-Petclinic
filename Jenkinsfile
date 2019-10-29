@@ -39,7 +39,7 @@ node{
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
         //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
-        sh "${mvnHome}/bin/mvn clean package deploy"
+        sh "${mvnHome}/bin/mvn -X clean package deploy"
 	    
 	    echo '*************Unit Test, Compile, Build & Package was Successful************'
 	    
