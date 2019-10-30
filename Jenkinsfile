@@ -7,7 +7,7 @@ node{
    //echo env.BUILD_NUMBER
    //def BUILD_ID = env.BUILD_NUMBER
    
-   def uploadSpec = """{
+   /*def uploadSpec = """{
            "files": [
                {
                "pattern": "target/petclinic.war",
@@ -15,7 +15,7 @@ node{
                }
                ]
     }"""
-
+    */
    
    try     { /* try start brace */
         
@@ -39,9 +39,27 @@ node{
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
         //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
-        sh "${mvnHome}/bin/mvn -X clean package deploy"
+        sh "${mvnHome}/bin/mvn clean package"
 	    
 	    echo '*************Unit Test, Compile, Build & Package was Successful************'
+	    
+    }
+    
+        stage ("Maven - Deploy to Nexus")  {
+            
+        try {
+        
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+        
+        //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
+        sh "${mvnHome}/bin/mvn -X deploy"
+	    
+	    echo '*************Artifacts upload to Nexus was Successful************'
+	    
+        }
+        catch(error) {
+            //Do nothing
+        }
 	    
     }
     /*
