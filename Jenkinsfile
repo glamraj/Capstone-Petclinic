@@ -55,7 +55,9 @@ node{
         stage("Quality Gate Check") {
             
             sleep(60)
-            
+        
+        try {
+         
             timeout(time: 1, unit: 'MINUTES')   {
                 
               def qg = waitForQualityGate()
@@ -74,6 +76,11 @@ node{
                   
             }
         }
+      }    //try end brace
+      catch(error) {
+            //Do nothing
+            echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
+      }
     }
     
         stage ("Artifactory upload in Nexus")  {
