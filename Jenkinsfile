@@ -1,60 +1,90 @@
 node{
 
-   //pipeline varibale definition
-   //def tomcatIp = '172.31.20.233'
-   //def tomcatUser = 'ec2-user'
-   
-   //echo env.BUILD_NUMBER
-   //def BUILD_ID = env.BUILD_NUMBER
-   
-   /*def uploadSpec = """{
-           "files": [
-               {
-               "pattern": "target/petclinic.war",
-                   "target": "libs-snapshot-local/com/workout/BSP/1.1.${BUILD_NUMBER}-petclinic-SNAPSHOT/"
-               }
-               ]
-    }"""
-    */
-   
-   try     { /* try start brace */
+    try     { /* try start brace */
         
         // notifyBuild('STARTED')
 
         stage('Start')    {
     
-        echo 'Hello-- Welcome to The Petclinic Demo'
+        echo 'The Petclinic Pipeline - Capstone Demo'
 
     }
     
-        stage('CheckOut From GIT')  {
+        stage('GITLab CheckOut')  {
         
         git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
-        echo '*************CheckedOut from GIT Was Successful*************'
+        
+        echo '*************GITLab Checkout is Successful***********'
         
     }
     
-        stage ("Maven - Package")  {
+        stage ("Maven Stage BUILD & PACKAGE")   {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
         sh "${mvnHome}/bin/mvn clean package"
 	    
-	    echo '*************Unit Test, Compile, Build & Package was Successful************'
+	    echo '*************Build & Package is Successful************'
 	    
     }
     
-        stage ("Maven - Deploy to Nexus")  {
+        stage('SonarQube Code Analysis')    {
+            
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+        
+        withSonarQubeEnv('scan')    {
+            
+            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
+            
+            echo '*************Sonar Code Quality Analysis is Successful************'
+            
+        }
+        
+    }
+    
+        stage('JACOCO Report Generation')    {
+            
+            jacoco()
+
+            step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+        
+            echo '*************Jacoco Report Generation is Successful***************'
+            
+    }
+    
+        stage("Quality Gate Check") {
+            
+            sleep(60)
+            
+            timeout(time: 1, unit: 'MINUTES')   {
+                
+              def qg = waitForQualityGate()
+              
+              if (qg.status != 'OK')    {
+                  
+                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                  echo "QG Status: ${qg.status}"
+                  echo '*************Quality Gate Check is Unsuccessful.. Aborting Deployment**********'
+                  
+            }
+              
+              else  {
+                  
+                  echo '*************SonarQube Quality Gate Check is Successful*************'
+                  
+            }
+        }
+    }
+    
+        stage ("Artifactory upload in Nexus")  {
             
         try {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        //sh "${mvnHome}/bin/mvn test -Dtest=AppTest.java"
-        sh "${mvnHome}/bin/mvn -X deploy"
+        sh "${mvnHome}/bin/mvn deploy"
 	    
-	    echo '*************Artifacts upload to Nexus was Successful************'
+	    echo '*************Artifacts upload in Nexus is Successful************'
 	    
         }
         catch(error) {
@@ -62,135 +92,77 @@ node{
         }
 	    
     }
-    /*
-        stage('Uploading to Artifactory') {
-               withEnv( ["PATH+MAVEN=${tool MAVEN_HOME}/bin/"] ) {
-                                 script {
-                                        def server = Artifactory.server 'artifact' 
-                                        server.bypassProxy = true
-                                        def buildInfo = server.upload spec: uploadSpec
-                                        echo '*************Uploaded artifacts to Artifactory was Successful*************'
-                                        }
-                    }
-                
-    } */
-
     
-    /*    stage('SonarQube Code Analysis')    {
-            
-        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-        
-        withSonarQubeEnv('scan')    {
-            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
-            
-            echo '*************Sonar Code Quality Analysis was Successful************'
-            
-            jacoco()
-
-            step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
-        
-            echo '*************Jacoco Report was Generated************'
-
-        
-        }
-        
-    }
-    
-        stage("Quality Gate Check") {
-            
-            sleep(60)
-            
-            timeout(time: 1, unit: 'MINUTES') {
-              def qg = waitForQualityGate()
-              
-              if (qg.status != 'OK') {
-                  error "Pipeline aborted due to quality gate failure: ${qg.status}"
-                  echo "QG Status: ${qg.status}"
-                  echo '*************Quality Gate Check was Unsuccessful*************' 
-            }
-              
-              else  {
-                  
-                  echo '*************Quality Gate Check was Successful*************'
-            }
-        }
-    }
-    */
-        stage('Build Docker Imager'){
+        stage('Build Petclinic Docker Image')    {
   
-        //sh "docker run dockerglam/extra"
-        //sh "docker container ls -a"
-    
         sh "docker build -t dockerglam/capstone_petclinic:${BUILD_ID} ."
         sh "docker tag dockerglam/capstone_petclinic:${BUILD_ID} dockerglam/capstone_petclinic:latest"
         
-        echo '*************Docker Image build was Successful************'
+        echo '*************Petclinic Docker Image build is Successful************'
     
     }
     
-    stage('Deploy to Dev Environment')  {
+        stage('Undeploy Petclinic - Previous version')  {
         
         try {
-            //pre-requsites for deploying to dev environment
-            //sh "docker pull dockerglam/capstone_petclinic:latest"
             
+            //pre-requsites for deploying in dev environment
             sh "docker container stop mypetclinic"
             sh "docker container rm mypetclinic"
             
-            echo '*************Removing previous container was Successful************'
+            echo '*************Undeploying previous Petclinic version is Successful************'
             
         }
         catch(error)    {
             //do nothing if container not running
         }
-        
-        sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
-        
-        echo '*************Petclinic container deployment was Successful :) ************'
-        
-        //sh "curl http://localhost:9090/petclinic"
-        
     }
     
-    /*
+        stage('Deploy Petclinic - Latest version')  {
+            
+        sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
+        
+        echo '*************Deploying latest Petclinic version is Successful************'
+            
+    }
+    
     try { //Dockerhub Versioning try start brace
     
-        stage('Docker Hub Login')   {
+        stage('Dockerhub Image Versioning - Login')   {
         
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
             
     	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
-    	echo '*************Dockerhub login was Successful************'
+    	
+    	echo '*************Dockerhub login is Successful************'
 
         }
         
     }
 
-        stage('Image Push to Docker Hub') {    
+        stage('Dockerhub Image Versioning - Image Push')    {
  
         //Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
-        echo '*************Image Current Build Dockerhub Push was Successful************'
+        echo '*************Image:Current Build Dockerhub Push is Successful************'
         
         sh "docker push dockerglam/capstone_petclinic:latest"
-        echo '*************Image:latest Dockerhub Push was Successful************'
+        echo '*************Image:latest Dockerhub Push is Successful************'
      
-        //destroy local images
+        //destroy local images to download Image from Dockerhub
         //sh "docker rmi dockerglam/capstone_petclinic:latest"
         //sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
-        //echo '*************Local Image destroy was Successful************'
+        //echo '*************Local Image destroy is Successful************'
         
     }
     
     } //Dockerhub versioning try end brace
-    
+
     catch(error)    {  //Dockerhub versioning catch start brace
         // To Prevent Jenkins Job failure in case in case Dockerhub is not connecting..
-        echo '*************Dockerhub versioning was Unsuccessful due to Dockerhub connection failure************'
+        echo '*************Dockerhub Image versioning is Unsuccessful due to Dockerhub connection failure************'
         
     }   //Dockerhub catch end brace
-    
-    */
     
 
         /*stage('Deploy to AWS Prod Environment')  {
@@ -212,10 +184,10 @@ node{
 		//  do nothing if there is an exception
 	    }
 
-    }*/
+    }
 
 
-/*    stage('Anisble Playbook- Install Tomcat server'){
+    stage('Anisble Playbook- Install Tomcat server'){
     sh label: '', script: 'cp tomcat-install.yml /opt/ansible/playbooks'
     
     step([$class: 'AnsiblePlaybookBuilder', additionalParameters: '', ansibleName: 'ansible-server', becomeUser: '', credentialsId: '', forks: 5, limit: '', playbook: '/opt/ansible/playbooks/tomcat-install.yml', skippedTags: '', startAtTask: '', sudoUser: '', tags: '', vaultCredentialsId: ''])
@@ -232,7 +204,7 @@ node{
     // If there was an exception thrown, the build failed
     //currentBuild.result = "FAILED"
     throw e
-    echo "Catch Block"
+    echo "Catch Block - Exception check error logs"
    } /* catch end brace */
     
    finally { /* finally start brace */
