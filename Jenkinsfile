@@ -4,7 +4,7 @@ node{
         
         // notifyBuild('STARTED')
 
-        stage('Start')    {
+        stage('Start')    { 
     
         echo 'The Petclinic Pipeline - Capstone Demo'
 
