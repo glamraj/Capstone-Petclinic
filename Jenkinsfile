@@ -14,7 +14,6 @@ node{
             
         try {
             
-            sh "PWD"
             ansiblePlaybook installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
             
         }
