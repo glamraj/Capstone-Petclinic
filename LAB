@@ -1,0 +1,1250 @@
+14th August:
+
+osgdev@TG-DEVOPS-OS132:~$ echo $JAVA_HOME
+/usr/java/jdk1.8.0_162
+osgdev@TG-DEVOPS-OS132:~$ echo $PATH
+/home/osgdev/bin:/home/osgdev/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/java/jdk1.8.0_162/bin/:/opt/apache-maven-3.5.2/bin
+osgdev@TG-DEVOPS-OS132:~$ java -version
+java version "1.8.0_161"
+Java(TM) SE Runtime Environment (build 1.8.0_161-b12)
+Java HotSpot(TM) 64-Bit Server VM (build 25.161-b12, mixed mode)
+
+sudo apt-get update --fix-missing
+
+###########################################
+All commands for DevOps Professional Demos
+###########################################
+✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ ✓ 
+
+echo $JAVA_HOME
+
+echo $PATH
+
+java -version
+
+git --version
+
+mvn --version
+#/opt/apache-maven-3.5.2
+
+✓ ###Start Stop tomcat service:
+http://localhost:5050/manager/html
+Note: Manager credentials - admin/admin
+
+sudo /opt/tomcat/apache-tomcat-8.5.27/bin/startup.sh
+
+sudo /opt/tomcat/apache-tomcat-8.5.27/bin/shutdown.sh
+
+✓ ###Start Stop Jfrog Artifactory:
+http://localhost:5040/artifactory/webapp/#/home
+@Login with devops/devops (Default Admin credentials : admin/password) devops/devops
+Note:
+If any exceptions to start, use ps -ef | grep tomcat to fid PID’s of tomcat and kill them
+Use Sudo kill -9 <PID>
+@To start service at the background use: nohup <./sh> &
+nohup /opt/jfrog/artifactory/bin/artifactory.sh
+cat nohup.out
+
+systemctl stop artifactory.service
+
+sudo /opt/jfrog/artifactory/bin/artifactory.sh
+
+✓ ###Start Stop Sonar
+@http://127.0.0.1:9000/sonar/
+Password admin/admin
+
+#Start SonarQube Service
+sudo /home/osgdev/mySonarQube/sonarqube-6.4/bin/linux-x86-64/sonar.sh start
+
+#Stop SonarQube Service
+$ sudo /home/osgdev/mySonarQube/sonarqube-6.4/bin/linux-x86-64/sonar.sh stop
+
+#To check SonarQube status
+$ sudo /home/osgdev/mySonarQube/sonarqube-6.4/bin/linux-x86-64/sonar.sh status
+
+#Sonar scanner
+cd /home/osgdev/sonar-scanner-3.2
+
+✓ ###Check availability of Firefox Webdriver (geckodriver):
+whereis geckodriver
+
+✓ ### Docker
+docker --version
+
+✓ ### Ansible
+
+✓ ### Check availability of Jenkins:
+http://localhost:8080/
+jenkins/jenkins : rajib/rajib.kol@gmail.com
+service jenkins status
+
+cred: demo/rajibjenkins
+
+http://localhost:5040/artifactory/
+
+@@@@@@@@@@@@@@@@@@@@@GIT LAB@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ Command line instructions
+Git global setup
+
+git config --global user.name "RA20080937"
+git config --global user.email "rajib.chowdhury3@wipro.com"
+
+Create a new repository
+
+git clone https://topgear-training-gitlab.wipro.com/RA20080937/lab1.git
+cd lab1
+touch README.md
+git add README.md
+git commit -m "add README"
+git push -u origin master
+
+Existing folder
+
+cd existing_folder
+git init
+git remote add origin https://topgear-training-gitlab.wipro.com/RA20080937/lab1.git
+git add .
+git commit -m "Initial commit"
+git push -u origin master
+
+Existing Git repository
+
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin https://topgear-training-gitlab.wipro.com/RA20080937/lab1.git
+git push -u origin --all
+git push -u origin --tags
+
+Pull from Gitlab
+
+git pull origin master
+
+git remote show origin
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@Jenkins@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+wlecome.java:
+
+class welcome {
+ public static void main(String args[]){
+     System.out.println("Hello World");
+ }
+}
+
+javac welcome.java
+java welcome
+
+
+
+
+--------------------------------lab
+/var/lib/jenkins/workspace/ILPBookstore/
+
+- sonar.projectKey='ILP_Bookstore'
+- sonar.projectName='ILP_Bookstore'
+- sonar.projectVersion='1'
+- sonar.sources='/var/lib/jenkins/workspace/ILPBookstore/src'
+
+
+#################################################Anisble#############################################ILP3@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+###LAB DAY11
+
+cat /etc/hosts
+
+ansible all -i 'localhost,' -m ping -c local
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ansiserver
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ansiserver 
+[local]
+localhost
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible all -i '/opt/ansilab/ansiserver' -m ping -c local
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -i '/opt/ansilab/ansiserver' -m ping -c local
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible local -i '/opt/ansilab/ansiserver' -m ping -c local
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ansible.cfg
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ansible.cfg 
+[defaults]
+
+inventory = /opt/ansilab/ansiserver
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m ping -c local
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m ping
+The authenticity of host 'localhost (::1)' can't be established.
+ECDSA key fingerprint is SHA256:cajiFI0f4f+cYAGtWNyWgZsOmghVjHzgu7HeS/BGRZI.
+Are you sure you want to continue connecting (yes/no)? yes
+localhost | UNREACHABLE! => {
+    "changed": false, 
+    "msg": "Failed to connect to the host via ssh: Warning: Permanently added 'localhost' (ECDSA) to the list of known hosts.\r\nPermission denied (publickey,password).\r\n", 
+    "unreachable": true
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m ping -k -u osgdev
+SSH password: osg@1234
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+Note: -k prompt for the password and -u specify the username
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ansiserver
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ansiserver
+[local]
+localhost ansible_connection=local
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m ping
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat /etc/hosts
+127.0.0.1	localhost
+
+127.0.1.1	TG-DEVOPS-OS132.wipro.com TG-DEVOPS-OS132
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ansiserver
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ansiserver
+[local]
+localhost ansible_connection=local
+TG-DevOps-OS132 hostname=127.0.1.1 ansible_ssh_user=osgdev
+root@TG-DEVOPS-OS132:/opt/ansilab# 
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible TG-DEVOPS-OS132 -m ping -k -u osgdev
+SSH password: 
+TG-DEVOPS-OS132 | FAILED! => {
+    "msg": "Using a SSH password instead of a key is not possible because Host Key checking is enabled and sshpass does not support this.  Please add this host's fingerprint to your known_hosts file to manage this host."
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ping TG-DevOps-OS132
+PING TG-DEVOPS-OS132.wipro.com (127.0.1.1) 56(84) bytes of data.
+64 bytes from TG-DEVOPS-OS132.wipro.com (127.0.1.1): icmp_seq=1 ttl=64 time=0.037 ms
+64 bytes from TG-DEVOPS-OS132.wipro.com (127.0.1.1): icmp_seq=2 ttl=64 time=0.043 ms
+64 bytes from TG-DEVOPS-OS132.wipro.com (127.0.1.1): icmp_seq=3 ttl=64 time=0.044 ms
+64 bytes from TG-DEVOPS-OS132.wipro.com (127.0.1.1): icmp_seq=4 ttl=64 time=0.041 ms
+64 bytes from TG-DEVOPS-OS132.wipro.com (127.0.1.1): icmp_seq=5 ttl=64 time=0.046 ms
+^C
+--- TG-DEVOPS-OS132.wipro.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 3998ms
+rtt min/avg/max/mdev = 0.037/0.042/0.046/0.005 ms
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ssh osgdev@TG-DevOps-OS132
+The authenticity of host 'tg-devops-os132 (127.0.1.1)' can't be established.
+ECDSA key fingerprint is SHA256:cajiFI0f4f+cYAGtWNyWgZsOmghVjHzgu7HeS/BGRZI.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'tg-devops-os132' (ECDSA) to the list of known hosts.
+osgdev@tg-devops-os132's password: 
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+605 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Sat Sep  7 19:51:09 2019 from ::1
+osgdev@TG-DEVOPS-OS132:~$ 
+
+osgdev@TG-DEVOPS-OS132:~$ exit
+logout
+Connection to tg-devops-os132 closed
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ls ~/.ssh/
+known_hosts
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible TG-DEVOPS-OS132 -m ping -k -u osgdev
+SSH password: 
+TG-DEVOPS-OS132 | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:EiwefYR4S4QhK/n/fSIi5meKj2zNVH+QeyT38yxFAVs root@TG-DEVOPS-OS132
+The key's randomart image is:
++---[RSA 2048]----+
+|  . .=...  ..E   |
+| . ooo+.    o.   |
+|o . oo+.o  .  .  |
+| o . +.* o   .   |
+|  . o o S . .    |
+|   o   + o o .   |
+|  + .   o   =    |
+|.+oo+.... .. o   |
+|+=+= ....o  .    |
++----[SHA256]-----+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ls ~/.ssh/
+id_rsa  id_rsa.pub  known_hosts
+
+osgdev@TG-DEVOPS-OS132:~$ ssh-copy-id -i ~/.ssh/id_rsa.pub TG-Devops-Os132
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/osgdev/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+osgdev@tg-devops-os132's password: 
+Permission denied, please try again.
+osgdev@tg-devops-os132's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'TG-Devops-Os132'"
+and check to make sure that only the key(s) you wanted were added.
+
+osgdev@TG-DEVOPS-OS132:~$ ssh osgdev@TG-DevOps-OS132
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-112-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+605 packages can be updated.
+0 updates are security updates.
+
+
+Last login: Sat Sep  7 20:27:35 2019 from 127.0.0.1
+
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ cat ansiserver 
+[local]
+localhost ansible_connection=local
+TG-DEVOPS-OS132 hostname=127.0.1.1 ansible_ssh_user=osgdev
+TG-DevOps-OS132.wipro.com hostname=127.0.1.1 ansible_ssh_user=osgdev
+
+
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ ansible TG-DevOps-OS132.wipro.com -m ping
+TG-DevOps-OS132.wipro.com | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ ansible all -m ping
+localhost | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+TG-DevOps-OS132.wipro.com | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+TG-DEVOPS-OS132 | SUCCESS => {
+    "changed": false, 
+    "ping": "pong"
+}
+
+
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ ansible --list-hosts all
+  hosts (3):
+    localhost
+    TG-DEVOPS-OS132
+    TG-DevOps-OS132.wipro.com
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ 
+
+
+##########################Handson ROles Day12################################
+
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ ansible localhost -m command -a 'echo "Hello World"'
+localhost | SUCCESS | rc=0 >>
+Hello World
+
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ ansible localhost -a 'echo "Hello World"'
+localhost | SUCCESS | rc=0 >>
+Hello World
+
+osgdev@TG-DEVOPS-OS132:/opt/ansilab$ ansible localhost -m shell -a 'cat /etc/resolv.conf‘
+> helo melo
+> ^C
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m file -a 'path=/opt/ansilab/testfile state=touch'
+localhost | SUCCESS => {
+    "changed": true, 
+    "dest": "/opt/ansilab/testfile", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "0644", 
+    "owner": "root", 
+    "size": 0, 
+    "state": "file", 
+    "uid": 0
+}
+root@TG-DEVOPS-OS132:/opt/ansilab# ll
+total 16
+drwxr-xr-x 2 root root 4096 Sep  7 21:41 ./
+drwxr-xr-x 7 root root 4096 Sep  7 19:29 ../
+-rw-r--r-- 1 root root   48 Sep  7 19:42 ansible.cfg
+-rw-r--r-- 1 root root  171 Sep  7 20:44 ansiserver
+-rw-r--r-- 1 root root    0 Sep  7 21:41 testfile
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m file -a 'path=/opt/ansilab/testfile state=file'
+localhost | SUCCESS => {
+    "changed": false, 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "0644", 
+    "owner": "root", 
+    "path": "/opt/ansilab/testfile", 
+    "size": 0, 
+    "state": "file", 
+    "uid": 0
+}
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m file -a 'path=/opt/ansilab/resource state=directory'
+localhost | SUCCESS => {
+    "changed": true, 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "0755", 
+    "owner": "root", 
+    "path": "/opt/ansilab/resource", 
+    "size": 4096, 
+    "state": "directory", 
+    "uid": 0
+}
+root@TG-DEVOPS-OS132:/opt/ansilab# ll
+total 20
+drwxr-xr-x 3 root root 4096 Sep  7 21:43 ./
+drwxr-xr-x 7 root root 4096 Sep  7 19:29 ../
+-rw-r--r-- 1 root root   48 Sep  7 19:42 ansible.cfg
+-rw-r--r-- 1 root root  171 Sep  7 20:44 ansiserver
+drwxr-xr-x 2 root root 4096 Sep  7 21:43 resource/
+-rw-r--r-- 1 root root    0 Sep  7 21:41 testfile
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m file -a 'path=/opt/ansilab/resource state=absent'
+localhost | SUCCESS => {
+    "changed": true, 
+    "path": "/opt/ansilab/resource", 
+    "state": "absent"
+}
+root@TG-DEVOPS-OS132:/opt/ansilab# ll
+total 16
+drwxr-xr-x 2 root root 4096 Sep  7 21:44 ./
+drwxr-xr-x 7 root root 4096 Sep  7 19:29 ../
+-rw-r--r-- 1 root root   48 Sep  7 19:42 ansible.cfg
+-rw-r--r-- 1 root root  171 Sep  7 20:44 ansiserver
+-rw-r--r-- 1 root root    0 Sep  7 21:41 testfile
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m file -a 'path=/opt/ansilab/testfile state=absent'
+localhost | SUCCESS => {
+    "changed": true, 
+    "path": "/opt/ansilab/testfile", 
+    "state": "absent"
+}
+root@TG-DEVOPS-OS132:/opt/ansilab# ll
+total 16
+drwxr-xr-x 2 root root 4096 Sep  7 21:44 ./
+drwxr-xr-x 7 root root 4096 Sep  7 19:29 ../
+-rw-r--r-- 1 root root   48 Sep  7 19:42 ansible.cfg
+-rw-r--r-- 1 root root  171 Sep  7 20:44 ansiserver
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m copy -a 'src=/var/log/auth.log dest=/opt/ansilab/ansible1.txt'
+localhost | SUCCESS => {
+    "changed": true, 
+    "checksum": "c0643a2ed061ce1d5ad9960126e491c353716547", 
+    "dest": "/opt/ansilab/ansible1.txt", 
+    "gid": 0, 
+    "group": "root", 
+    "md5sum": "5faa701c8d73ba620bf19c6bac7a72fc", 
+    "mode": "0644", 
+    "owner": "root", 
+    "size": 336223, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1567873221.18-178743633753371/source", 
+    "state": "file", 
+    "uid": 0
+}
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m unarchive -a 'src=/home/osgdev/Desktop/Devops/apache-tomcat-9.0.20.tar.gz dest=/opt/ansilab'
+localhost | SUCCESS => {
+    "changed": true, 
+    "dest": "/opt/ansilab", 
+    "extract_results": {
+        "cmd": [
+            "/bin/tar", 
+            "--extract", 
+            "-C", 
+            "/opt/ansilab", 
+            "-z", 
+            "-f", 
+            "/root/.ansible/tmp/ansible-tmp-1567873671.01-15581818978031/source"
+        ], 
+        "err": "", 
+        "out": "", 
+        "rc": 0
+    }, 
+    "gid": 0, 
+    "group": "root", 
+    "handler": "TgzArchive", 
+    "mode": "0755", 
+    "owner": "root", 
+    "size": 4096, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1567873671.01-15581818978031/source", 
+    "state": "directory", 
+    "uid": 0
+}
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# script Day12.log
+Script started, file is Day12.log
+
+
+
+
+
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m copy -a 'src=/opt/ansilab/apache-tomcat-9.0.20/conf/server.xml dest=/opt/ansilab/resource/server.xml.j2' 
+localhost | SUCCESS => {
+    "changed": true, 
+    "checksum": "c46bef72fe29a59d93244b889f130e28ee575df5", 
+    "dest": "/opt/ansilab/resource/server.xml.j2", 
+    "gid": 0, 
+    "group": "root", 
+    "md5sum": "1a1db053f27ddddebd261c4b1d8c534c", 
+    "mode": "0644", 
+    "owner": "root", 
+    "size": 7511, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1567874128.17-7059701837900/source", 
+    "state": "file", 
+    "uid": 0
+}
+
+
+
+ansible localhost -m copy -a 'src=/opt/ansilab/resource/server.xml.j2 dest=/opt/ansilab/apache-tomcat-9.0.20/conf/server.xml'
+
+CHANGE TOMCAT PORT TO 7070
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m copy -a 'src=/opt/ansilab/resource/server.xml.j2 dest=/opt/ansilab/apache-tomcat-9.0.20/conf/server.xml'localhost | SUCCESS => {
+    "changed": true, 
+    "checksum": "94c61260c634bb4f7cffc500e4de91496461b54a", 
+    "dest": "/opt/ansilab/apache-tomcat-9.0.20/conf/server.xml", 
+    "gid": 0, 
+    "group": "root", 
+    "md5sum": "3b10effa8ca6491421a0dd25d03d3ab4", 
+    "mode": "0600", 
+    "owner": "root", 
+    "size": 7511, 
+    "src": "/root/.ansible/tmp/ansible-tmp-1567874535.36-149969622533745/source", 
+    "state": "file", 
+    "uid": 0
+}
+
+
+ansible localhost -m shell -a '/opt/ansilab/apache-tomcat-9.0.20/bin/startup.sh'
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible localhost -m shell -a '/opt/ansilab/apache-tomcat-9.0.20/bin/startup.sh'
+localhost | SUCCESS | rc=0 >>
+Tomcat started.
+
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-galaxy init ./roles/newrole
+- ./roles/newrole was created successfully
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cd ./roles
+root@TG-DEVOPS-OS132:/opt/ansilab/roles# tree
+.
+├── newrole
+│   ├── defaults
+│   │   └── main.yml
+│   ├── files
+│   ├── handlers
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   ├── tasks
+│   │   └── main.yml
+│   ├── templates
+│   ├── tests
+│   │   ├── inventory
+│   │   └── test.yml
+│   └── vars
+│       └── main.yml
+└── sample
+    ├── handlers
+    ├── tasks
+    └── vars
+
+
+
+
+#############DAY12 handson#############
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat echo.yaml 
+---
+  - hosts: localhost
+    tasks:
+    - name: Use echo command
+      command: 'echo "Hello world"'
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat hostname.yaml 
+- hosts: localhost
+  tasks:
+   - name: Use hostname command
+     command: hostname
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat resolv.yaml 
+- hosts: localhost
+  tasks:
+  - name: Use shell command
+    shell: cat /etc/resolv.conf
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat file.yaml 
+- hosts: localhost
+  tasks:
+  - name: To Create a folder
+    file:
+      path: /opt/ansilab/NEWSAMPLE
+      state: directory
+      mode: 0755
+  - name: To Create a file
+    file:
+      path: /opt/ansilab/NEWSAMPLE/new_file
+      state: touch
+
+###Using variables###
+root@TG-DEVOPS-OS132:/opt/ansilab# cat file1.yaml 
+- hosts: localhost
+  vars:
+    folder_path: /opt/ansilab
+    file_name: new_file2
+  tasks:
+  - name: To Create a folder
+    file:
+      path: "{{folder_path}}/NEWSAMPLE2"
+      state: directory
+      mode: 0755
+   
+  - name: To Create a file
+    file:
+      path: "{{folder_path}}/NEWSAMPLE2/{{file_name}}"
+      state: touch
+
+
+
+
+############Using Handlers########################
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat file2.yaml 
+- hosts: localhost
+  vars:
+    folder_path: /opt/ansilab
+    folder_name: NEWSAMPLE3
+    file_name: new_file3
+  tasks:
+  - name: To Create a folder
+    file:
+      path: "{{folder_path}}/{{folder_name}}"
+      state: directory
+      mode: 0755
+    notify:
+    - To Create a file
+
+  handlers:   
+  - name: To Create a file
+    file:
+      path: "{{folder_path}}/{{folder_name}}/{{file_name}}"
+      state: touch
+
+
+
+
+####USing ROLES##################################
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/sample# tree
+.
+├── handlers
+│   └── main.yaml
+├── server.yaml
+├── tasks
+│   └── main.yaml
+└── vars
+    └── main.yaml
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/sample/handlers# cat main.yaml 
+- name: To Create a file
+  file:
+    path: "{{folder_path}}/{{folder_name}}/{{file_name}}"
+    state: touch
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/sample/vars# cat main.yaml 
+folder_path: /opt/ansilab
+folder_name: NEWSAMPLE4
+file_name: new_file4
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/sample/tasks# cat main.yaml 
+- name: To Create a folder
+  file:
+    path: "{{folder_path}}/{{folder_name}}"
+    state: directory
+    mode: 0755
+  notify:
+    - To Create a file
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/sample# cat server.yaml 
+- hosts: localhost
+  roles:
+  - sample
+
+
+
+
+###NODE JS ROLES##################
+
+node-v10.16.3-linux-x64.tar.xz
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-galaxy init ./roles/nodejs
+- ./roles/nodejs was created successfully
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles# tree nodejs/
+nodejs/
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+
+8 directories, 8 files
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/nodejs/tasks/main.yml 
+---
+# tasks file for ./roles/tomcat
+  - name: Copy tar file to nodejs folder
+    copy:
+      src: /home/osgdev/Downloads/node-v10.16.3-linux-x64.tar.xz
+      dest: /opt/ansilab/nodejs
+
+  - name: Extract the tar file
+    unarchive:
+      src: /opt/ansilab/nodejs/node-v10.16.3-linux-x64.tar.xz
+      dest: /opt/ansilab/nodejs
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/nodejs/node.yml 
+- hosts: localhost
+  roles:
+  - nodejs
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ./roles/nodejs/tasks/main.yml
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook ./roles/nodejs/node.yml 
+
+PLAY [localhost] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [Copy tar file to nodejs folder] ******************************************
+changed: [localhost]
+
+TASK [Extract the tar file] ****************************************************
+changed: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=2    unreachable=0    failed=0   
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/nodejs/node-v10.16.3-linux-x64/bin# cat app.js 
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/nodejs/node-v10.16.3-linux-x64/bin# ll
+total 40192
+drwxrwxr-x 2  500  500     4096 Sep  8 12:14 ./
+drwxrwxr-x 6  500  500     4096 Aug 16 00:21 ../
+-rw-r--r-- 1 root root      340 Sep  8 12:14 app.js
+-rwxrwxr-x 1  500  500 41142280 Aug 16 00:20 node*
+lrwxrwxrwx 1  500  500       38 Aug 16 00:21 npm -> ../lib/node_modules/npm/bin/npm-cli.js*
+lrwxrwxrwx 1  500  500       38 Aug 16 00:21 npx -> ../lib/node_modules/npm/bin/npx-cli.js*
+root@TG-DEVOPS-OS132:/opt/ansilab/nodejs/node-v10.16.3-linux-x64/bin# ./node app.js
+Server running at http://127.0.0.1:3000/
+
+
+####################################NEW ROLES TOMCAT###############################################
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-galaxy init ./roles/tomcat
+- ./roles/tomcat was created successfully
+root@TG-DEVOPS-OS132:/opt/ansilab# tree ./roles/tomcat
+./roles/tomcat
+├── defaults
+│   └── main.yml
+├── files
+├── handlers
+│   └── main.yml
+├── meta
+│   └── main.yml
+├── README.md
+├── tasks
+│   └── main.yml
+├── templates
+├── tests
+│   ├── inventory
+│   └── test.yml
+└── vars
+    └── main.yml
+
+8 directories, 8 files
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook ./roles/tomcat/tomcat.yml
+
+PLAY [localhost] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Copy tar file to tomcat folder] *****************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP *****************************************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0   
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ll
+total 1516
+drwxr-xr-x 11 root root   4096 Sep  8 12:21 ./
+drwxr-xr-x  7 root root   4096 Sep  7 19:29 ../
+-rw-r--r--  1 root root 336223 Sep  7 21:50 ansible1.txt
+-rw-r--r--  1 root root    116 Sep  7 22:32 ansible.cfg
+-rw-r--r--  1 root root  17211 Sep  8 12:27 ansible.log
+-rw-r--r--  1 root root    171 Sep  7 20:44 ansiserver
+drwxr-xr-x  9 root root   4096 Sep  7 21:57 apache-tomcat-9.0.20/
+-rw-r--r--  1 root root 905216 Sep  8 12:26 Day12.log
+-rw-r--r--  1 root root 197241 Sep  8 10:42 Day12_wl.log
+-rw-r--r--  1 root root    101 Sep  8 10:04 echo.yaml
+-rw-r--r--  1 root root    326 Sep  8 10:20 file1.yaml
+-rw-r--r--  1 root root    411 Sep  8 10:26 file2.yaml
+-rw-r--r--  1 root root    242 Sep  8 10:12 file.yaml
+-rw-r--r--  1 root root     83 Sep  8 10:07 hostname.yaml
+drwxr-xr-x  2 root root   4096 Sep  8 10:12 NEWSAMPLE/
+drwxr-xr-x  2 root root   4096 Sep  8 10:20 NEWSAMPLE2/
+drwxr-xr-x  2 root root   4096 Sep  8 10:27 NEWSAMPLE3/
+drwxr-xr-x  2 root root   4096 Sep  8 10:40 NEWSAMPLE4/
+drwxr-xr-x  3 root root   4096 Sep  8 12:08 nodejs/
+-rw-r--r--  1 root root     88 Sep  8 10:08 resolv.yaml
+drwxr-xr-x  2 root root   4096 Sep  7 22:09 resource/
+drwxr-xr-x  6 root root   4096 Sep  8 12:20 roles/
+drwxr-xr-x  2 root root   4096 Sep  8 12:27 tomcat/
+root@TG-DEVOPS-OS132:/opt/ansilab# cd tomcat
+root@TG-DEVOPS-OS132:/opt/ansilab/tomcat# ll
+total 10608
+drwxr-xr-x  2 root root     4096 Sep  8 12:27 ./
+drwxr-xr-x 11 root root     4096 Sep  8 12:21 ../
+-rw-r--r--  1 root root 10851264 Sep  8 12:27 apache-tomcat-9.0.20.tar.gz
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat# cat tomcat.yml 
+- hosts: localhost
+  roles:
+  - tomcat
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/tomcat/tasks/main.yml 
+---
+# tasks file for ./roles/tomcat
+  - name: Copy tar file to tomcat folder
+    copy:
+      src: /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+  - name: Extract tomcat tar file
+    unarchive:
+      src: /opt/ansilab/tomcat/apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook ./roles/tomcat/tomcat.yml 
+
+PLAY [localhost] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Copy tar file to tomcat folder] *****************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Extract tomcat tar file] ************************************************************************************************************************
+changed: [localhost]
+
+PLAY RECAP *****************************************************************************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0   
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cd tomcat/
+root@TG-DEVOPS-OS132:/opt/ansilab/tomcat# ll
+total 10612
+drwxr-xr-x  3 root root     4096 Sep  8 12:46 ./
+drwxr-xr-x 11 root root     4096 Sep  8 12:21 ../
+drwxr-xr-x  9 root root     4096 Sep  8 12:46 apache-tomcat-9.0.20/
+-rw-r--r--  1 root root 10851264 Sep  8 12:27 apache-tomcat-9.0.20.tar.gz
+
+
+
+
+
+#############Archive Tomcat from Files################
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cp /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz /opt/ansilab/roles/tomcat/files/
+root@TG-DEVOPS-OS132:/opt/ansilab# ll /opt/ansilab/roles/tomcat/files/
+total 10608
+drwxr-xr-x  2 root root     4096 Sep  8 12:50 ./
+drwxr-xr-x 10 root root     4096 Sep  8 12:31 ../
+-rw-r--r--  1 root root 10851264 Sep  8 12:50 apache-tomcat-9.0.20.tar.gz
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat/tasks# cat main.yml 
+---
+# tasks file for ./roles/tomcat
+#  - name: Copy tar file to tomcat folder
+#    copy:
+#      src: /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz
+#      dest: /opt/ansilab/tomcat
+#
+  - name: Extract tomcat tar file
+    unarchive:
+      src: apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook -v ./roles/tomcat/tomcat.yml 
+Using /opt/ansilab/ansible.cfg as config file
+
+PLAY [localhost] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Extract tomcat tar file] ************************************************************************************************************************
+changed: [localhost] => {"changed": true, "dest": "/opt/ansilab/tomcat", "extract_results": {"cmd": ["/bin/tar", "--extract", "-C", "/opt/ansilab/tomcat", "-z", "-f", "/root/.ansible/tmp/ansible-tmp-1567927534.78-257885273575970/source"], "err": "", "out": "", "rc": 0}, "gid": 0, "group": "root", "handler": "TgzArchive", "mode": "0755", "owner": "root", "size": 4096, "src": "/root/.ansible/tmp/ansible-tmp-1567927534.78-257885273575970/source", "state": "directory", "uid": 0}
+
+PLAY RECAP *****************************************************************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0   
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cd tomcat/
+root@TG-DEVOPS-OS132:/opt/ansilab/tomcat# ll
+total 12
+drwxr-xr-x  3 root root 4096 Sep  8 12:55 ./
+drwxr-xr-x 11 root root 4096 Sep  8 12:21 ../
+drwxr-xr-x  9 root root 4096 Sep  8 12:55 apache-tomcat-9.0.20/
+
+#############################Modify server.xml for specific port###################
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat# cp /opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml /opt/ansilab/roles/tomcat/files/
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat/files# mv server.xml server.xml.j2
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat/files# ll
+total 10616
+drwxr-xr-x  2 root root     4096 Sep  8 13:03 ./
+drwxr-xr-x 10 root root     4096 Sep  8 12:31 ../
+-rw-r--r--  1 root root 10851264 Sep  8 12:50 apache-tomcat-9.0.20.tar.gz
+-rw-------  1 root root     7512 Sep  8 13:02 server.xml.j2
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat/files# cp server.xml.j2 /opt/ansilab/roles/tomcat/templates/
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat/templates# ll
+total 16
+drwxr-xr-x  2 root root 4096 Sep  8 13:07 ./
+drwxr-xr-x 10 root root 4096 Sep  8 12:31 ../
+-rw-------  1 root root 7512 Sep  8 13:07 server.xml.j2
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/roles/tomcat/tasks# cat main.yml 
+---
+# tasks file for ./roles/tomcat
+#  - name: Copy tar file to tomcat folder
+#    copy:
+#      src: /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz
+#      dest: /opt/ansilab/tomcat
+#
+  - name: Extract tomcat tar file
+    unarchive:
+      src: apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+  - name: Change the tomcat port
+    template:
+      src: server.xml.j2
+      dest: /opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook -v ./roles/tomcat/tomcat.yml 
+Using /opt/ansilab/ansible.cfg as config file
+
+PLAY [localhost] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+
+TASK [tomcat : Extract tomcat tar file] ****************************************
+ok: [localhost] => {"changed": false, "dest": "/opt/ansilab/tomcat", "gid": 0, "group": "root", "handler": "TgzArchive", "mode": "0755", "owner": "root", "size": 4096, "src": "/root/.ansible/tmp/ansible-tmp-1567928564.28-35830533879165/source", "state": "directory", "uid": 0}
+
+TASK [tomcat : Change the tomcat port] *****************************************
+changed: [localhost] => {"changed": true, "checksum": "2362b450e4a3ae39b130b397a9bda58f3743993c", "dest": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml", "gid": 0, "group": "root", "md5sum": "6a7a595851c2102fb5090ea3df8f0611", "mode": "0600", "owner": "root", "size": 7512, "src": "/root/.ansible/tmp/ansible-tmp-1567928565.09-40905630960374/source", "state": "file", "uid": 0}
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0   
+
+
+
+######################################Start Tomcat Server###########################################
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat roles/tomcat/tasks/main.yml 
+---
+# tasks file for ./roles/tomcat
+#  - name: Copy tar file to tomcat folder
+#    copy:
+#      src: /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz
+#      dest: /opt/ansilab/tomcat
+#
+  - name: Extract tomcat tar file
+    unarchive:
+      src: apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+  - name: Change the tomcat port
+    template:
+      src: server.xml.j2
+      dest: /opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml
+
+  - name: Start tomcat service
+    shell: /opt/ansilab/tomcat/apache-tomcat-9.0.20/bin/startup.sh
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook -v roles/tomcat/tomcat.yml 
+Using /opt/ansilab/ansible.cfg as config file
+
+PLAY [localhost] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Extract tomcat tar file] ************************************************************************************************************************
+changed: [localhost] => {"changed": true, "dest": "/opt/ansilab/tomcat", "extract_results": {"cmd": ["/bin/tar", "--extract", "-C", "/opt/ansilab/tomcat", "-z", "-f", "/root/.ansible/tmp/ansible-tmp-1567928827.53-165076679742059/source"], "err": "", "out": "", "rc": 0}, "gid": 0, "group": "root", "handler": "TgzArchive", "mode": "0755", "owner": "root", "size": 4096, "src": "/root/.ansible/tmp/ansible-tmp-1567928827.53-165076679742059/source", "state": "directory", "uid": 0}
+
+TASK [tomcat : Change the tomcat port] *************************************************************************************************************************
+changed: [localhost] => {"changed": true, "checksum": "2362b450e4a3ae39b130b397a9bda58f3743993c", "dest": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml", "gid": 0, "group": "root", "md5sum": "6a7a595851c2102fb5090ea3df8f0611", "mode": "0600", "owner": "root", "size": 7512, "src": "/root/.ansible/tmp/ansible-tmp-1567928828.49-10526566448546/source", "state": "file", "uid": 0}
+
+TASK [tomcat : Start tomcat service] ***************************************************************************************************************************
+changed: [localhost] => {"changed": true, "cmd": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/bin/startup.sh", "delta": "0:00:00.008397", "end": "2019-09-08 13:17:09.035774", "rc": 0, "start": "2019-09-08 13:17:09.027377", "stderr": "", "stderr_lines": [], "stdout": "Tomcat started.", "stdout_lines": ["Tomcat started."]}
+
+PLAY RECAP *****************************************************************************************************************************************************
+localhost                  : ok=4    changed=3    unreachable=0    failed=0   
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ./roles/tomcat/vars/main.yml
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/tomcat/vars/main.yml
+---
+# vars file for ./roles/tomcat
+tomcat_home: /opt/ansilab/tomcat/apache-tomcat-9.0.20
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ./roles/tomcat/handlers/main.yml
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/tomcat/handlers/main.yml
+---
+# handlers file for ./roles/tomcat
+  - name: Start tomcat service
+    shell: "{{tomcat_home}}/bin/startup.sh"
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# vi ./roles/tomcat/tasks/main.yml
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/tomcat/tasks/main.yml
+---
+# tasks file for ./roles/tomcat
+#  - name: Copy tar file to tomcat folder
+#    copy:
+#      src: /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz
+#      dest: /opt/ansilab/tomcat
+#
+  - name: Extract tomcat tar file
+    unarchive:
+      src: apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+  - name: Change the tomcat port
+    template:
+      src: server.xml.j2
+      dest: "{{tomcat_home}}/conf/server.xml"
+    notify: Start tomcat service
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat ./roles/tomcat/tomcat.yml
+- hosts: localhost
+  roles:
+  - tomcat
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook -v ./roles/tomcat/tomcat.yml
+Using /opt/ansilab/ansible.cfg as config file
+
+PLAY [localhost] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Extract tomcat tar file] ************************************************************************************************************************
+changed: [localhost] => {"changed": true, "dest": "/opt/ansilab/tomcat", "extract_results": {"cmd": ["/bin/tar", "--extract", "-C", "/opt/ansilab/tomcat", "-z", "-f", "/root/.ansible/tmp/ansible-tmp-1567929920.18-269806245255522/source"], "err": "", "out": "", "rc": 0}, "gid": 0, "group": "root", "handler": "TgzArchive", "mode": "0755", "owner": "root", "size": 4096, "src": "/root/.ansible/tmp/ansible-tmp-1567929920.18-269806245255522/source", "state": "directory", "uid": 0}
+
+TASK [tomcat : Change the tomcat port] *************************************************************************************************************************
+changed: [localhost] => {"changed": true, "checksum": "3b895449f76e1e5ba944ca7c62a1f562de6ab501", "dest": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml", "gid": 0, "group": "root", "md5sum": "1bc9b7753b0bcb79147e4c724d4c6d6a", "mode": "0600", "owner": "root", "size": 7511, "src": "/root/.ansible/tmp/ansible-tmp-1567929921.19-252514257223435/source", "state": "file", "uid": 0}
+
+RUNNING HANDLER [tomcat : Start tomcat service] ****************************************************************************************************************
+changed: [localhost] => {"changed": true, "cmd": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/bin/startup.sh", "delta": "0:00:00.007434", "end": "2019-09-08 13:35:21.742714", "rc": 0, "start": "2019-09-08 13:35:21.735280", "stderr": "", "stderr_lines": [], "stdout": "Tomcat started.", "stdout_lines": ["Tomcat started."]}
+
+PLAY RECAP *****************************************************************************************************************************************************
+localhost                  : ok=4    changed=3    unreachable=0    failed=0   
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab/tomcat/apache-tomcat-9.0.20/logs# pwd
+/opt/ansilab/tomcat/apache-tomcat-9.0.20/logs
+
+###################3troubleshoot####################
+root@TG-DEVOPS-OS132:/opt/ansilab# cat /opt/ansilab/tomcat/apache-tomcat-9.0.20/logs/catalina.out 
+
+
+
+
+############################Multiple Handlers########################################
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat roles/tomcat/tasks/main.yml 
+---
+# tasks file for ./roles/tomcat
+#  - name: Copy tar file to tomcat folder
+#    copy:
+#      src: /home/osgdev/Downloads/apache-tomcat-9.0.20.tar.gz
+#      dest: /opt/ansilab/tomcat
+#
+  - name: Extract tomcat tar file
+    unarchive:
+      src: apache-tomcat-9.0.20.tar.gz
+      dest: /opt/ansilab/tomcat
+
+  - name: Change the tomcat port
+    template:
+      src: server.xml.j2
+      dest: "{{tomcat_home}}/conf/server.xml"
+    notify: 
+      - Stop tomcat service
+      - Start tomcat service
+
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# cat roles/tomcat/handlers/main.yml 
+---
+# handlers file for ./roles/tomcat
+  - name: Stop tomcat service
+    shell: "{{tomcat_home}}/bin/shutdown.sh"
+
+  - name: Start tomcat service
+    shell: "{{tomcat_home}}/bin/startup.sh"
+
+
+Change Port::::
+
+<!-- A "Connector" represents an endpoint by which requests are received
+         and responses are returned. Documentation at :
+         Java HTTP Connector: /docs/config/http.html
+         Java AJP  Connector: /docs/config/ajp.html
+         APR (HTTP/AJP) Connector: /docs/apr.html
+         Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
+    -->
+    <Connector port="11011" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+    <!-- A "Connector" using the shared thread pool-->
+    <!--
+
+
+root@TG-DEVOPS-OS132:/opt/ansilab# ansible-playbook -v /opt/ansilab/roles/tomcat/tomcat.yml 
+Using /opt/ansilab/ansible.cfg as config file
+
+PLAY [localhost] ***********************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************
+ok: [localhost]
+
+TASK [tomcat : Extract tomcat tar file] ************************************************************************************************************************
+changed: [localhost] => {"changed": true, "dest": "/opt/ansilab/tomcat", "extract_results": {"cmd": ["/bin/tar", "--extract", "-C", "/opt/ansilab/tomcat", "-z", "-f", "/root/.ansible/tmp/ansible-tmp-1567932938.25-82269042911713/source"], "err": "", "out": "", "rc": 0}, "gid": 0, "group": "root", "handler": "TgzArchive", "mode": "0755", "owner": "root", "size": 4096, "src": "/root/.ansible/tmp/ansible-tmp-1567932938.25-82269042911713/source", "state": "directory", "uid": 0}
+
+TASK [tomcat : Change the tomcat port] *************************************************************************************************************************
+changed: [localhost] => {"changed": true, "checksum": "2362b450e4a3ae39b130b397a9bda58f3743993c", "dest": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/conf/server.xml", "gid": 0, "group": "root", "md5sum": "6a7a595851c2102fb5090ea3df8f0611", "mode": "0600", "owner": "root", "size": 7512, "src": "/root/.ansible/tmp/ansible-tmp-1567932939.22-50308304121413/source", "state": "file", "uid": 0}
+
+RUNNING HANDLER [tomcat : Stop tomcat service] *****************************************************************************************************************
+changed: [localhost] => {"changed": true, "cmd": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/bin/shutdown.sh", "delta": "0:00:00.277039", "end": "2019-09-08 14:25:40.040212", "rc": 0, "start": "2019-09-08 14:25:39.763173", "stderr": "", "stderr_lines": [], "stdout": "", "stdout_lines": []}
+
+RUNNING HANDLER [tomcat : Start tomcat service] ****************************************************************************************************************
+changed: [localhost] => {"changed": true, "cmd": "/opt/ansilab/tomcat/apache-tomcat-9.0.20/bin/startup.sh", "delta": "0:00:00.006959", "end": "2019-09-08 14:25:40.238204", "rc": 0, "start": "2019-09-08 14:25:40.231245", "stderr": "", "stderr_lines": [], "stdout": "Tomcat started.", "stdout_lines": ["Tomcat started."]}
+
+PLAY RECAP *****************************************************************************************************************************************************
+localhost                  : ok=5    changed=4    unreachable=0    failed=0   
+
+

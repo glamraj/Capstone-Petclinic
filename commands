@@ -1,0 +1,19 @@
+Sonar start
+/home/osgdev/mySonarQube/sonarqube-6.4/bin/linux-x86-64/./sonar.sh restart
+
+ln -s /home/osgdev/mySonarQube/sonarqube-6.4/bin/linux-x86-64/sonar.sh /usr/local/bin/sonarstart
+
+#sonarstart restart
+
+Nexus start
+#service nexus restart
+
+Tomcat start
+/home/osgdev/mytomcat/apache-tomcat-8.5.27/bin/./startup.sh
+
+ln -s /home/osgdev/mytomcat/apache-tomcat-8.5.27/bin/startup.sh /usr/local/bin/tomcatup
+
+#tomcatup
+
+Docker start
+#service docker restart
