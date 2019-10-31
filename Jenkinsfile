@@ -10,6 +10,14 @@ node{
 
     }
     
+        stage('GITLab CheckOut')  {
+        
+        git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
+        
+        echo '*************GITLab Checkout is Successful***********'
+        
+    }
+    
         stage('Ansible Playbook - Preparing the Environment & Services')    {
             
         try {
@@ -29,14 +37,6 @@ node{
             
         }
 
-    }
-    
-        stage('GITLab CheckOut')  {
-        
-        git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
-        
-        echo '*************GITLab Checkout is Successful***********'
-        
     }
     
         stage ("Maven Stage BUILD & PACKAGE")   {
