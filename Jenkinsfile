@@ -22,7 +22,7 @@ node{
             
         try {
             
-            ansiblePlaybook installation: 'ansible-server', playbook: 'roles/clinic/clinic.yml'
+            ansiblePlaybook become: true, installation: 'ansible-server', playbook: 'roles/clinic/clinic.yml'
             
         }
         catch(error)    {
