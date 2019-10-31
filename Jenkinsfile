@@ -10,6 +10,25 @@ node{
 
     }
     
+        stage('Ansible Playbook - Preparing the Environment & Services')    {
+            
+        try {
+            
+            ansiblePlaybook installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
+            
+        }
+        catch(error)    {
+            
+            throw error
+            
+            echo "*******Preparing environment failed. Please check Ansible log********"
+            
+            sh "cat ./roles/ansible.log"
+            
+        }
+
+    }
+    
         stage('GITLab CheckOut')  {
         
         git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
