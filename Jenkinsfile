@@ -14,7 +14,7 @@ node{
             
         try {
             
-            //sh "cd ./roles/"
+            sh "cd ./var/lib/jenkins/workspace/Petclinic/roles/clinic/"
             
             sh "pwd"
             
