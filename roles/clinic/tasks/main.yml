@@ -1,0 +1,14 @@
+---
+# tasks file for ./roles/clinic
+
+  - name: Start SonarQube service
+    shell: sonarstart restart
+
+  - name: Start Nexus service
+    shell: service nexus restart
+
+  - name: Start Tomcat Service
+    shell: tomcatup
+
+  - name: Start Docker service
+    shell: service docker restart

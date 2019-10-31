@@ -1,0 +1,4 @@
+[local]
+localhost ansible_connection=local
+Capstone216 hostname=127.0.1.1 ansible_ssh_user=osgdev
+Capstone216.wipro.com hostname=127.0.1.1 ansible_ssh_user=osgdev

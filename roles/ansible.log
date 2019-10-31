@@ -1,0 +1,122 @@
+2019-10-31 18:09:04,741 p=18386 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:09:04,914 p=18386 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:09:07,129 p=18386 u=root |  ok: [localhost]
+2019-10-31 18:09:07,162 p=18386 u=root |  TASK [clinic : Copy tar file to tomcat folder] *********************************************************************************
+2019-10-31 18:09:08,649 p=18386 u=root |  changed: [localhost]
+2019-10-31 18:09:08,670 p=18386 u=root |  TASK [clinic : Extract tomcat tar file] ****************************************************************************************
+2019-10-31 18:09:08,769 p=18386 u=root |  fatal: [localhost]: FAILED! => {"changed": false, "msg": "Could not find or access '/opt/extra/tomcat/apache-maven-3.5.2-bin.tar.gz'"}
+2019-10-31 18:09:08,772 p=18386 u=root |  	to retry, use: --limit @/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/clinic.retry
+
+2019-10-31 18:09:08,772 p=18386 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:09:08,772 p=18386 u=root |  localhost                  : ok=2    changed=1    unreachable=0    failed=1   
+2019-10-31 18:11:43,578 p=23336 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:11:43,611 p=23336 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:11:44,968 p=23336 u=root |  ok: [localhost]
+2019-10-31 18:11:44,982 p=23336 u=root |  TASK [clinic : Copy tar file to tomcat folder] *********************************************************************************
+2019-10-31 18:11:45,846 p=23336 u=root |  ok: [localhost]
+2019-10-31 18:11:45,856 p=23336 u=root |  TASK [clinic : Extract tomcat tar file] ****************************************************************************************
+2019-10-31 18:11:46,301 p=23336 u=root |  changed: [localhost]
+2019-10-31 18:11:46,316 p=23336 u=root |  TASK [add group "tomcat"] ******************************************************************************************************
+2019-10-31 18:11:46,829 p=23336 u=root |  ok: [localhost]
+2019-10-31 18:11:46,899 p=23336 u=root |  TASK [add user "tomcat"] *******************************************************************************************************
+2019-10-31 18:11:47,861 p=23336 u=root |  ok: [localhost]
+2019-10-31 18:11:47,888 p=23336 u=root |  TASK [download Tomcat] *********************************************************************************************************
+2019-10-31 18:11:48,215 p=23336 u=root |  fatal: [localhost]: FAILED! => {"changed": false, "cmd": "cd /opt/extra", "msg": "[Errno 2] No such file or directory", "rc": 2}
+2019-10-31 18:11:48,217 p=23336 u=root |  	to retry, use: --limit @/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/clinic.retry
+
+2019-10-31 18:11:48,218 p=23336 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:11:48,218 p=23336 u=root |  localhost                  : ok=5    changed=1    unreachable=0    failed=1   
+2019-10-31 18:13:43,163 p=27146 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:13:43,266 p=27146 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:13:44,884 p=27146 u=root |  ok: [localhost]
+2019-10-31 18:13:44,893 p=27146 u=root |  TASK [clinic : Start Tomcat Service] *******************************************************************************************
+2019-10-31 18:13:45,300 p=27146 u=root |  changed: [localhost]
+2019-10-31 18:13:45,311 p=27146 u=root |  TASK [add group "tomcat"] ******************************************************************************************************
+2019-10-31 18:13:45,936 p=27146 u=root |  ok: [localhost]
+2019-10-31 18:13:45,951 p=27146 u=root |  TASK [add user "tomcat"] *******************************************************************************************************
+2019-10-31 18:13:46,735 p=27146 u=root |  ok: [localhost]
+2019-10-31 18:13:46,774 p=27146 u=root |  TASK [download Tomcat] *********************************************************************************************************
+2019-10-31 18:13:47,224 p=27146 u=root |  fatal: [localhost]: FAILED! => {"changed": false, "cmd": "cd /opt/extra", "msg": "[Errno 2] No such file or directory", "rc": 2}
+2019-10-31 18:13:47,233 p=27146 u=root |  	to retry, use: --limit @/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/clinic.retry
+
+2019-10-31 18:13:47,233 p=27146 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:13:47,233 p=27146 u=root |  localhost                  : ok=4    changed=1    unreachable=0    failed=1   
+2019-10-31 18:19:58,415 p=6961 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:19:58,465 p=6961 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:19:59,623 p=6961 u=root |  ok: [localhost]
+2019-10-31 18:19:59,636 p=6961 u=root |  TASK [clinic : Start Tomcat Service] *******************************************************************************************
+2019-10-31 18:20:00,023 p=6961 u=root |  changed: [localhost]
+2019-10-31 18:20:00,033 p=6961 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:20:00,034 p=6961 u=root |  localhost                  : ok=2    changed=1    unreachable=0    failed=0   
+2019-10-31 18:22:39,599 p=11954 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:22:39,629 p=11954 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:22:40,817 p=11954 u=root |  ok: [localhost]
+2019-10-31 18:22:40,826 p=11954 u=root |  TASK [clinic : Start SonarQube service] ****************************************************************************************
+2019-10-31 18:22:54,204 p=11954 u=root |  changed: [localhost]
+2019-10-31 18:22:54,216 p=11954 u=root |  TASK [clinic : Start Nexus service] ********************************************************************************************
+2019-10-31 18:23:52,030 p=11954 u=root |   [WARNING]: Consider using service module rather than running service
+
+2019-10-31 18:23:52,036 p=11954 u=root |  changed: [localhost]
+2019-10-31 18:23:52,061 p=11954 u=root |  TASK [clinic : Start Tomcat Service] *******************************************************************************************
+2019-10-31 18:23:52,682 p=11954 u=root |  changed: [localhost]
+2019-10-31 18:23:52,698 p=11954 u=root |  TASK [clinic : Start Docker service] *******************************************************************************************
+2019-10-31 18:24:09,654 p=11954 u=root |  changed: [localhost]
+2019-10-31 18:24:09,667 p=11954 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:24:09,668 p=11954 u=root |  localhost                  : ok=5    changed=4    unreachable=0    failed=0   
+2019-10-31 18:27:11,485 p=21102 u=root |  ERROR! the playbook: ./roles/clinic/clinic.yml could not be found
+2019-10-31 18:27:25,695 p=21564 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:27:25,802 p=21564 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:27:27,739 p=21564 u=root |  ok: [localhost]
+2019-10-31 18:27:27,750 p=21564 u=root |  TASK [clinic : Start SonarQube service] ****************************************************************************************
+2019-10-31 18:27:35,998 p=21564 u=root |  changed: [localhost]
+2019-10-31 18:27:36,007 p=21564 u=root |  TASK [clinic : Start Nexus service] ********************************************************************************************
+2019-10-31 18:27:41,694 p=21564 u=root |   [WARNING]: Consider using service module rather than running service
+
+2019-10-31 18:27:41,695 p=21564 u=root |  changed: [localhost]
+2019-10-31 18:27:41,721 p=21564 u=root |  TASK [clinic : Start Tomcat Service] *******************************************************************************************
+2019-10-31 18:27:42,699 p=21564 u=root |  changed: [localhost]
+2019-10-31 18:27:42,748 p=21564 u=root |  TASK [clinic : Start Docker service] *******************************************************************************************
+2019-10-31 18:27:47,102 p=21564 u=root |  changed: [localhost]
+2019-10-31 18:27:47,125 p=21564 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:27:47,127 p=21564 u=root |  localhost                  : ok=5    changed=4    unreachable=0    failed=0   
+2019-10-31 18:28:26,981 p=24040 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:28:27,194 p=24040 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:28:35,420 p=24040 u=root |  ok: [localhost]
+2019-10-31 18:28:35,514 p=24040 u=root |  TASK [clinic : Start SonarQube service] ****************************************************************************************
+2019-10-31 18:29:20,373 p=24040 u=root |  changed: [localhost]
+2019-10-31 18:29:20,431 p=24040 u=root |  TASK [clinic : Start Nexus service] ********************************************************************************************
+2019-10-31 18:29:25,162 p=24040 u=root |   [WARNING]: Consider using service module rather than running service
+
+2019-10-31 18:29:25,163 p=24040 u=root |  changed: [localhost]
+2019-10-31 18:29:25,240 p=24040 u=root |  TASK [clinic : Start Tomcat Service] *******************************************************************************************
+2019-10-31 18:29:26,141 p=24040 u=root |  changed: [localhost]
+2019-10-31 18:29:26,181 p=24040 u=root |  TASK [clinic : Start Docker service] *******************************************************************************************
+2019-10-31 18:29:29,945 p=24040 u=root |  changed: [localhost]
+2019-10-31 18:29:29,962 p=24040 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:29:29,963 p=24040 u=root |  localhost                  : ok=5    changed=4    unreachable=0    failed=0   
+2019-10-31 18:30:54,903 p=29232 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:30:55,020 p=29232 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:30:58,344 p=29232 u=root |  ok: [localhost]
+2019-10-31 18:30:58,353 p=29232 u=root |  TASK [clinic : Start SonarQube service] ****************************************************************************************
+2019-10-31 18:31:05,441 p=29232 u=root |  changed: [localhost]
+2019-10-31 18:31:05,472 p=29232 u=root |  TASK [clinic : Start Nexus service] ********************************************************************************************
+2019-10-31 18:31:05,649 p=29232 u=root |  fatal: [localhost]: FAILED! => {"changed": false, "msg": "Could not find or access 'service'\nSearched in:\n\t/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/files/service\n\t/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/service\n\t/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/tasks/files/service\n\t/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/tasks/service\n\t/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/files/service\n\t/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/service"}
+2019-10-31 18:31:05,651 p=29232 u=root |  	to retry, use: --limit @/opt/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/clinic.retry
+
+2019-10-31 18:31:05,652 p=29232 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:31:05,652 p=29232 u=root |  localhost                  : ok=2    changed=1    unreachable=0    failed=1   
+2019-10-31 18:31:50,686 p=31612 u=root |  PLAY [localhost] ***************************************************************************************************************
+2019-10-31 18:31:50,721 p=31612 u=root |  TASK [Gathering Facts] *********************************************************************************************************
+2019-10-31 18:31:52,438 p=31612 u=root |  ok: [localhost]
+2019-10-31 18:31:52,447 p=31612 u=root |  TASK [clinic : Start SonarQube service] ****************************************************************************************
+2019-10-31 18:31:59,742 p=31612 u=root |  changed: [localhost]
+2019-10-31 18:31:59,777 p=31612 u=root |  TASK [clinic : Start Nexus service] ********************************************************************************************
+2019-10-31 18:32:04,610 p=31612 u=root |   [WARNING]: Consider using service module rather than running service
+
+2019-10-31 18:32:04,610 p=31612 u=root |  changed: [localhost]
+2019-10-31 18:32:04,640 p=31612 u=root |  TASK [clinic : Start Tomcat Service] *******************************************************************************************
+2019-10-31 18:32:05,638 p=31612 u=root |  changed: [localhost]
+2019-10-31 18:32:05,675 p=31612 u=root |  TASK [clinic : Start Docker service] *******************************************************************************************
+2019-10-31 18:32:10,585 p=31612 u=root |  changed: [localhost]
+2019-10-31 18:32:10,593 p=31612 u=root |  PLAY RECAP *********************************************************************************************************************
+2019-10-31 18:32:10,593 p=31612 u=root |  localhost                  : ok=5    changed=4    unreachable=0    failed=0   
