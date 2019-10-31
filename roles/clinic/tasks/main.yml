@@ -2,13 +2,13 @@
 # tasks file for ./roles/clinic
 
   - name: Start SonarQube service
-    shell: sonarstart restart
+    shell: sudo sonarstart restart
 
   - name: Start Nexus service
-    shell: service nexus restart
+    shell: sudo service nexus restart
 
   - name: Start Tomcat Service
-    shell: tomcatup
+    shell: sudo tomcatup
 
   - name: Start Docker service
-    shell: service docker restart
+    shell: sudo service docker restart
