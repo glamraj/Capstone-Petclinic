@@ -14,11 +14,11 @@ node{
             
         try {
             
-            sh "cd ./roles/"
+            //sh "cd ./roles/"
             
             sh "pwd"
             
-            ansiblePlaybook installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
+            ansiblePlaybook installation: 'ansible-server', playbook: '/var/lib/jenkins/workspace/Petclinic/roles/clinic/clinic.yml'
             
         }
         catch(error)    {
