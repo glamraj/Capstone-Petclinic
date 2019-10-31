@@ -14,7 +14,9 @@ node{
             
         try {
             
-            ansiblePlaybook installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
+            sh "cd ./roles/"
+            
+            ansiblePlaybook installation: 'ansible-server', playbook: './clinic/clinic.yml'
             
         }
         catch(error)    {
