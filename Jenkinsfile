@@ -14,11 +14,9 @@ node{
             
         try {
             
-            sh "cd /var/lib/jenkins/workspace/Petclinic/roles/clinic/"
-            
             sh "pwd"
             
-            ansiblePlaybook installation: 'ansible-server', playbook: '/var/lib/jenkins/workspace/Petclinic/roles/clinic/clinic.yml'
+            ansiblePlaybook installation: 'ansible-server', playbook: 'roles/clinic/clinic.yml'
             
         }
         catch(error)    {
@@ -27,7 +25,7 @@ node{
             
             echo "*******Preparing environment failed. Please check Ansible log********"
             
-            sh "cat ./roles/ansible.log"
+            sh "cat ansible.log"
             
         }
 
