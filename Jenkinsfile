@@ -16,7 +16,9 @@ node{
             
             sh "cd ./roles/"
             
-            ansiblePlaybook installation: 'ansible-server', playbook: './clinic/clinic.yml'
+            sh "pwd"
+            
+            ansiblePlaybook installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
             
         }
         catch(error)    {
