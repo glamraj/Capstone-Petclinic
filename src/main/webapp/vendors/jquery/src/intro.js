@@ -18,3 +18,4 @@
 // you try to trace through "use strict" call chains. (#13335)
 // Support: Firefox 18+
 //"use strict";
+})
