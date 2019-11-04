@@ -71,7 +71,7 @@ node{
             
     }
     
-        stage('Run JMeter Test')  {
+        /*stage('Run JMeter Test')  {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -81,7 +81,7 @@ node{
 
         echo '*************JMeter Report Generation is Successful***************'
     
-        }
+        } */
 
     
         stage("Quality Gate Check") {
