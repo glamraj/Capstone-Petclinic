@@ -47,7 +47,7 @@ node{
 	    
     }
     
-    /*    stage('SonarQube Code Analysis')    {
+        stage('SonarQube Code Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -59,7 +59,7 @@ node{
             
         }
         
-    } */
+    }
     
         stage('Run JMeter Test')  {
 
@@ -84,7 +84,7 @@ node{
             
     }
     
-    /*    stage("Quality Gate Check") {
+        stage("Quality Gate Check") {
             
             sleep(60)
         
@@ -113,7 +113,7 @@ node{
             //Do nothing
             echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
       }
-    } */
+    }
     
         stage ("Artifactory upload in Nexus")  {
             
