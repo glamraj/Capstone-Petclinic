@@ -18,7 +18,7 @@ node{
         
     }
     
-     /*   stage('Ansible Playbook - Preparing the Environment & Services')    {
+        stage('Ansible Playbook - Preparing the Environment & Services')    {
             
         try {
             
@@ -35,7 +35,7 @@ node{
             
         }
 
-    }*/
+    }
     
         stage ("Maven Stage BUILD & PACKAGE")   {
         
@@ -53,7 +53,7 @@ node{
         
         withSonarQubeEnv('scan')    {
             
-            sh "${mvnHome}/bin/mvn -X sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
+            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
             
             echo '*************Sonar Code Quality Analysis is Successful************'
             
@@ -73,7 +73,7 @@ node{
     
         stage("Quality Gate Check") {
             
-            sleep(60)
+        sleep(60)
         
         try {
          
