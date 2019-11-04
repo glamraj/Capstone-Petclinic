@@ -53,25 +53,12 @@ node{
         
         withSonarQubeEnv('scan')    {
             
-            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
+            sh "${mvnHome}/bin/mvn -X sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
             
             echo '*************Sonar Code Quality Analysis is Successful************'
             
         }
         
-    }
-    
-        stage('Run JMeter Test')  {
-
-        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-
-        //step([$class: 'ArtifactArchiver', artifacts: '**/*.jmx, **/jmeter.log'])
-        //or
-    
-        step([$class: 'ArtifactArchiver', artifacts: 'src/test/jmeter/petclinic_test_plan.jmx', fingerprint: true])
-
-        echo '*************JMeter Report Generation is Successful***************'
-
     }
     
         stage('JACOCO Report Generation')    {
