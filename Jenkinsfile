@@ -68,7 +68,7 @@ node{
         //step([$class: 'ArtifactArchiver', artifacts: '**/*.jmx, **/jmeter.log'])
         //or
     
-        step([$class: 'ArtifactArchiver', artifacts: 'petclinic_test_plan.jmx', fingerprint: true])
+        step([$class: 'ArtifactArchiver', artifacts: 'src/test/jmeter/petclinic_test_plan.jmx', fingerprint: true])
 
         echo '*************JMeter Report Generation is Successful***************'
 
