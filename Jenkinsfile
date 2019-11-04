@@ -75,9 +75,9 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        step([$class: 'ArtifactArchiver', artifacts: '**/*.jtl, **/jmeter.log'])
+        //step([$class: 'ArtifactArchiver', artifacts: '**/*.jtl, **/jmeter.log'])
 
-        //step([$class: 'ArtifactArchiver', artifacts: 'Test.html', fingerprint: true])
+        step([$class: 'ArtifactArchiver', artifacts: 'Test.html', fingerprint: true])
 
         echo '*************JMeter Report Generation is Successful***************'
     
