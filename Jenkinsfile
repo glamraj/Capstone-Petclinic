@@ -61,6 +61,19 @@ node{
         
     } */
     
+        stage(Run JMeter Test)  {
+
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+
+        //step([$class: 'ArtifactArchiver', artifacts: '**/*.jmx, **/jmeter.log'])
+        //or
+    
+        step([$class: 'ArtifactArchiver', artifacts: 'petclinic_test_plan.jmx', fingerprint: true])
+
+        echo '*************JMeter Report Generation is Successful***************'
+
+    }
+    
         stage('JACOCO Report Generation')    {
             
             jacoco()
