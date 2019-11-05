@@ -1,11 +1,11 @@
 ---
 # tasks file for ./roles/dockerswarm
 
-  - name: Show available containers - pre scanling
-    shell: docker container ls
+  #- name: Show available containers - pre scanling
+    #shell: docker container ls
 
-  - name: Swarm kill
-    shell: docker swarm leave --force
+  #- name: Swarm kill
+   # shell: docker swarm leave --force
 
   - name: Swarm Init
     shell: docker swarm init
@@ -13,6 +13,6 @@
   - name: Auto Scale
     shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
 
-  - name: Show available containers - post scanling
-    shell: docker container ls
+ # - name: Show available containers - post scanling
+  #  shell: docker container ls
 
