@@ -10,5 +10,5 @@
   - name: Start Tomcat Service
     shell: sudo tomcatup
 
-  - name: Start Docker service
-    shell: sudo service docker restart
+#  - name: Start Docker service
+#shell: sudo service docker restart
