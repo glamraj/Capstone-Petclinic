@@ -1,18 +1,18 @@
 ---
 # tasks file for ./roles/dockerswarm
 
-  - name: Start SonarQube service
+  - name: Show available containers - pre scanling
     shell: docker container ls
 
-  - name: Start SonarQube service
+  - name: Swarm kill
     shell: docker swarm leave --force
 
-  - name: Start SonarQube service
+  - name: Swarm Init
     shell: docker swarm init
 
-  - name: Start SonarQube service
+  - name: Auto Scale
     shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
 
-  - name: Start SonarQube service
+  - name: Show available containers - post scanling
     shell: docker container ls
 
