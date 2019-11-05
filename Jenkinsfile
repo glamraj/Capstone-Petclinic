@@ -49,7 +49,7 @@ node{
 	    
     }
     
-    /*    stage('SonarQube Code Analysis')    {
+        stage('SonarQube Code Analysis')    {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -119,7 +119,7 @@ node{
             //Do nothing
         }
 	    
-    } */
+    }
     
         stage('Build Petclinic Docker Image')    {
   
