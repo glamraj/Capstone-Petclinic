@@ -24,6 +24,8 @@ node{
             
             ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
             
+            echo "*******Ansible - Preparing environment Successful********"
+            
         }
         catch(error)    {
             
@@ -150,6 +152,27 @@ node{
         
         echo '*************Deploying latest Petclinic version is Successful************'
             
+    }
+    
+        stage('Ansible Playbook - Initiate Docker Swarm -Auto scale')    {
+            
+        try {
+            
+            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/clinic/swarm.yml'
+            
+            echo "*******Ansible - PInitiate Docker Swarm -Auto scale Successful********"
+            
+        }
+        catch(error)    {
+            
+            throw error
+            
+            echo "*******Initiate Docker Swarm -Auto scale failed. Please check Ansible log********"
+            
+            sh "cat ansible.log"
+            
+        }
+
     }
     
     try { //Dockerhub Versioning try start brace
