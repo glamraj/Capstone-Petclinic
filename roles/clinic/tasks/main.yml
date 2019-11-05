@@ -3,12 +3,20 @@
 
   - name: Start SonarQube service
     shell: sudo sonarstart restart
+    ignore_errors: True
 
   - name: Start Nexus service
     shell: sudo service nexus restart
+    ignore_errors: True
 
   - name: Start Tomcat Service
     shell: sudo tomcatup
+    ignore_errors: True
+
+  - name: Start CAdvisor service
+    script: sudo docker container restart cadvisor
+    ignore_errors: True
 
 #  - name: Start Docker service
 #shell: sudo service docker restart
+#ignore_errors: True
