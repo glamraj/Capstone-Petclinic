@@ -158,7 +158,7 @@ node{
             
         try {
             
-            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/clinic/swarm.yml'
+            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/dockerswarm/swarm.yml'
             
             echo "*******Ansible - PInitiate Docker Swarm -Auto scale Successful********"
             
