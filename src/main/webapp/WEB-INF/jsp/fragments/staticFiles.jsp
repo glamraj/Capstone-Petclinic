@@ -6,7 +6,7 @@ PetClinic :: a Spring Framework CAPSTONE Project demonstration
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>PetClinic :: a Spring Framework demonstration</title>
+    <title>PetClinic :: a Spring Framework CAPSTONE Project demonstration</title>
 
 
     <spring:url value="/vendors/bootstrap/docs/assets/css/bootstrap.css" var="bootstrapCss"/>
