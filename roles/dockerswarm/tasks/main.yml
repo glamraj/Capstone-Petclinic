@@ -7,8 +7,8 @@
   #- name: Swarm kill
    # shell: docker swarm leave --force
 
-  - name: Swarm Init
-    shell: docker swarm init
+  - name: Remove previous mypetclinic service
+    shell: docker service rm mypetclinic
 
   - name: Auto Scale
     shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
