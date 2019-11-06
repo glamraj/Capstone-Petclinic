@@ -37,7 +37,7 @@ node{
             
         }
 
-    }
+    } */
     
         stage ("Maven Stage BUILD & PACKAGE")   {
         
@@ -47,7 +47,7 @@ node{
 	    
 	    echo '*************Build & Package is Successful************'
 	    
-    }
+    } /*
     
         stage('SonarQube Code Analysis')    {
             
