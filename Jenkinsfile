@@ -18,7 +18,7 @@ node{
         
     }
     
-        stage('Ansible Playbook - Preparing the Environment & Services')    {
+        /* stage('Ansible Playbook - Preparing the Environment & Services')    {
             
         try {
             
@@ -213,7 +213,7 @@ node{
         
     }   //Dockerhub catch end brace
     
-
+*/
         /*stage('Deploy to AWS Prod Environment')  {
     
         try {
@@ -267,7 +267,7 @@ node{
   } /* finally end brace */
 
    
-} /* node end brace */
+} /* node end brace */ 
 
 /*
 def notifyBuild(String buildStatus) {
