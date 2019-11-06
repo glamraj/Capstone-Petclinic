@@ -6,7 +6,7 @@ node{
 
         stage('Start')    { 
     
-        echo 'The Petclinic Pipeline - Capstone Demo'
+        echo 'The Petclinic Pipeline - Capstone Demo..'
 
     }
     
