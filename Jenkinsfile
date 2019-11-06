@@ -18,7 +18,7 @@ node{
         
     }
     
-        /* stage('Ansible Playbook - Preparing the Environment & Services')    {
+        stage('Ansible Playbook - Preparing the Environment & Services')    {
             
         try {
             
@@ -37,7 +37,7 @@ node{
             
         }
 
-    } */
+    }
     
         stage ("Maven Stage BUILD & PACKAGE")   {
         
