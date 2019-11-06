@@ -104,7 +104,7 @@ node{
       }
     } 
     
-    /*    stage ("Artifactory upload in Nexus")  {
+        stage ("Artifactory upload in Nexus")  {
             
         try {
         
@@ -213,7 +213,7 @@ node{
         
     }   //Dockerhub catch end brace
     
-*/
+
         /*stage('Deploy to AWS Prod Environment')  {
     
         try {
