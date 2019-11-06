@@ -47,7 +47,7 @@ node{
 	    
 	    echo '*************Build & Package is Successful************'
 	    
-    } /*
+    } 
     
         stage('SonarQube Code Analysis')    {
             
@@ -102,9 +102,9 @@ node{
             //Do nothing
             echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
       }
-    }
+    } 
     
-        stage ("Artifactory upload in Nexus")  {
+    /*    stage ("Artifactory upload in Nexus")  {
             
         try {
         
