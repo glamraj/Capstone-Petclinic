@@ -17,3 +17,68 @@ ln -s /home/osgdev/mytomcat/apache-tomcat-8.5.27/bin/startup.sh /usr/local/bin/t
 
 Docker start
 #service docker restart
+
+---------------ansi playbook-------------------------
+   - name: Start SonarQube service
+     script: sonarstart restart
+
+   - name: Start Nexus service
+     script: service nexus restart
+
+   - name: Start Tomcat service
+     script: tomcatup
+
+   - name: Start Docker service
+     script: service docker restart
+
+   - name: Start CAdvisor service
+     script: docker container restart cadvisor
+
+
+ansible-playbook -v roles/petclinic/petclinic.yml
+
+
+
+
+/* stage('Run JMeter Test')  {
+
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+
+        //step([$class: 'ArtifactArchiver', artifacts: '**/*.jmx, **/jmeter.log'])
+        //or
+    
+        step([$class: 'ArtifactArchiver', artifacts: 'src/test/jmeter/petclinic_test_plan.jmx', fingerprint: true])
+
+        echo '*************JMeter Report Generation is Successful***************'
+
+    }
+
+
+
+
+
+######SWARM###################
+
+docker swarm leave --force
+
+docker container ls
+
+docker swarm init
+
+docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
+
+docker container ls
+
+
+
+###########Cadvisor################
+docker run --volume=/:/rootfs:ro --volume=/var/run:/var/run:ro --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --volume=/dev/disk/:/dev/disk:ro --publish=8082:8080 --detach=true --name=cadvisor google/cadvisor:latest
+
+
+###GITLAB access token###
+user: jenkins
+gATxzBU1R4GHscBrd2k7
+
+#########################
+ip vdi- github webhook
+http://10.199.8.114:8080/project/Petclinic
