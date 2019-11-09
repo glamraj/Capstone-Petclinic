@@ -11,13 +11,13 @@
 #    shell: docker service rm mypetclinic
 #    ignore_errors: True
 
-  - name: Create Replicas
-    shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
-    ignore_errors: True
+#  - name: Create Replicas
+#    shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
+#    ignore_errors: True
     
-  - name: Auto Scale Instances
-    shell: docker service scale mypetclinic=5
-    ignore_errors: True
+#  - name: Auto Scale Instances
+#    shell: docker service scale mypetclinic=5
+#    ignore_errors: True
 
  # - name: Show available containers - post scanling
   #  shell: docker container ls
