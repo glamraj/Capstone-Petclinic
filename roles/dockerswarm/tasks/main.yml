@@ -7,9 +7,9 @@
   #- name: Swarm kill
    # shell: docker swarm leave --force
 
-  - name: Remove previous mypetclinic service
-    shell: docker service rm mypetclinic
-    ignore_errors: True
+#  - name: Remove previous mypetclinic service
+#    shell: docker service rm mypetclinic
+#    ignore_errors: True
 
   - name: Create Replicas
     shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
