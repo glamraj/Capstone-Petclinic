@@ -137,6 +137,7 @@ node{
             //pre-requsites for deploying in dev environment
             sh "docker container stop mypetclinic"
             sh "docker container rm mypetclinic"
+            sh "docker service rm mypetclinic"
             
             echo '*************Undeploying previous Petclinic version is Successful************'
             
