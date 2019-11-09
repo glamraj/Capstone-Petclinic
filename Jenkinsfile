@@ -4,21 +4,26 @@ node{
         
         // notifyBuild('STARTED')
 
-        stage('Start')    { 
-    
-        echo 'The Petclinic Pipeline - Capstone Demo.'
-
-    }
-    
         stage('GITLab CheckOut')  {
         
-        git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
+        //git 'https://topgear-training-gitlab.wipro.com/RA20080937/capstone-batch17-petclinic.git'
+	git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
         
-        echo '*************GITLab Checkout is Successful***********'
+        echo '*************GITLab Checkout is Successful************'
         
     }
+
+        stage ("Maven Stage BUILD & PACKAGE")   {
+        
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+        
+        sh "${mvnHome}/bin/mvn clean package"
+	    
+	    echo '*************Build & Package is Successful************'
+	    
+    }
     
-        stage('Ansible Playbook - Preparing the Environment & Services')    {
+    /*stage('Ansible Playbook - Preparing the Environment & Services')    {
             
         try {
             
@@ -37,17 +42,7 @@ node{
             
         }
 
-    }
-    
-        stage ("Maven Stage BUILD & PACKAGE")   {
-        
-        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
-        
-        sh "${mvnHome}/bin/mvn clean package"
-	    
-	    echo '*************Build & Package is Successful************'
-	    
-    } 
+    }*/
     
         stage('SonarQube Code Analysis')    {
             
@@ -142,43 +137,37 @@ node{
             echo '*************Undeploying previous Petclinic version is Successful************'
             
         }
+        
         catch(error)    {
             //do nothing if container not running
         }
     }
     
         stage('Deploy Petclinic - Latest version')  {
+        
+        try {
             
         sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
         
         echo '*************Deploying latest Petclinic version is Successful************'
-            
-    }
+        
+        sh "docker service create --name mypetclinic --replicas 2 -p 9090:8080 dockerglam/capstone_petclinic:latest"
     
-        stage('Ansible Playbook - Initiate Docker Swarm -Auto scale')    {
-            
-        try {
-            
-            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/dockerswarm/swarm.yml'
-            
-            echo "*******Ansible - PInitiate Docker Swarm -Auto scale Successful********"
-            
+        sh "docker service scale mypetclinic=3"
+        
+        echo '*************Docker Swarm Service create and Auto scale is Successful************'
+        
         }
+        
         catch(error)    {
-            
-            throw error
-            
-            echo "*******Initiate Docker Swarm -Auto scale failed. Please check Ansible log********"
-            
-            sh "cat ansible.log"
-            
+            //do nothing if container not running
         }
-
+            
     }
-    
-    try { //Dockerhub Versioning try start brace
     
         stage('Dockerhub Image Versioning - Login')   {
+        
+        try {
         
         withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
             
@@ -188,65 +177,47 @@ node{
 
         }
         
+        }
+        catch(error)    {
+            //do nothing if container not running
+        }
+        
     }
 
         stage('Dockerhub Image Versioning - Image Push')    {
- 
+        
+        try {
         //Push to Dockerhub
         sh "docker push dockerglam/capstone_petclinic:${BUILD_ID}"
         echo '*************Image:Current Build Dockerhub Push is Successful************'
         
         sh "docker push dockerglam/capstone_petclinic:latest"
         echo '*************Image:latest Dockerhub Push is Successful************'
-     
-        //destroy local images to download Image from Dockerhub
-        //sh "docker rmi dockerglam/capstone_petclinic:latest"
-        //sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
-        //echo '*************Local Image destroy is Successful************'
-        
-    }
-    
-    } //Dockerhub versioning try end brace
-
-    catch(error)    {  //Dockerhub versioning catch start brace
-        // To Prevent Jenkins Job failure in case in case Dockerhub is not connecting..
-        echo '*************Dockerhub Image versioning is Unsuccessful due to Dockerhub connection failure************'
-        
-    }   //Dockerhub catch end brace
-    
-
-        /*stage('Deploy to AWS Prod Environment')  {
-    
-        try {
-            
-        sshagent(['AWS-ec2-user']) {
-        
-        def dockerRun = 'docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest'
-        sh "ssh -o StrictHostKeyChecking=no ec2-user@15.206.123.211 ${dockerRun}"
-        //sh "ssh -o StrictHostKeyChecking=no ${tomcatUser}@${tomcatIp} ${dockerRmI}"
-        
-        echo '*************Deployment in AWS PROD was Successful************'
         }
         
-        } //try brace
-        
-        catch(error){
-		//  do nothing if there is an exception
-	    }
-
+        catch(error)    {
+            //do nothing if container not running
+        }
     }
-
-
-    stage('Anisble Playbook- Install Tomcat server'){
-    sh label: '', script: 'cp tomcat-install.yml /opt/ansible/playbooks'
     
-    step([$class: 'AnsiblePlaybookBuilder', additionalParameters: '', ansibleName: 'ansible-server', becomeUser: '', credentialsId: '', forks: 5, limit: '', playbook: '/opt/ansible/playbooks/tomcat-install.yml', skippedTags: '', startAtTask: '', sudoUser: '', tags: '', vaultCredentialsId: ''])
+        stage('Docker Image - Cleanup')    {
+        
+        try {     
+        
+            //destroy local images to download Image from Dockerhub
+            sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
+            sh "docker rmi dockerglam/capstone_petclinic:latest"
+            
+            echo '*************Local Image destroy is Successful************'
+        }
+        
+        catch(error)    {
+            //do nothing if container not running
+        }
+            
+    }
     
-    //sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook /opt/ansible/playbooks/tomcat-install.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-  }
- */
- 
-   } /* try end brace */
+} /* try end brace */
    
    
    catch (e) { /* catch start brace */
