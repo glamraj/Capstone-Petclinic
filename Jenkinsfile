@@ -6,14 +6,21 @@ node{
 
         stage('GITLab CheckOut')  {
         
-        //git 'https://topgear-training-gitlab.wipro.com/RA20080937/capstone-batch17-petclinic.git'
-	git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
+        try {
+            //git 'https://topgear-training-gitlab.wipro.com/RA20080937/capstone-batch17-petclinic.git'
+	        git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
         
-        echo '*************GITLab Checkout is Successful************'
-        
+            echo '*************GITLab Checkout is Successful************'
+        }
+        catch(error) {
+            //Do nothing
+        }
+    
     }
 
         stage ("Maven Stage BUILD & PACKAGE")   {
+        
+        try {
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -21,30 +28,33 @@ node{
 	    
 	    echo '*************Build & Package is Successful************'
 	    
+        }
+        catch(error) {
+            //Do nothing
+        }
+	    
     }
     
-    /*stage('Ansible Playbook - Preparing the Environment & Services')    {
+    stage('Ansible Playbook - Preparing the Environment & Services')    {
             
         try {
             
             ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
             
-            echo "*******Ansible - Preparing environment Successful********"
+            echo "*******Ansible Playbook execution- Preparing environment Successful********"
             
         }
         catch(error)    {
             
-            throw error
-            
             echo "*******Preparing environment failed. Please check Ansible log********"
-            
-            sh "cat ansible.log"
             
         }
 
-    }*/
+    }
     
         stage('SonarQube Code Analysis')    {
+            
+        try {
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
@@ -55,16 +65,27 @@ node{
             echo '*************Sonar Code Quality Analysis is Successful************'
             
         }
+        }
+        catch(error) {
+            //Do nothing
+        }
         
     }
     
         stage('JACOCO Report Generation')    {
+            
+            try {
             
             jacoco()
 
             step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
         
             echo '*************Jacoco Report Generation is Successful***************'
+            
+            }
+            catch(error) {
+            //Do nothing
+            }
             
     }
     
@@ -117,11 +138,17 @@ node{
     }
     
         stage('Build Petclinic Docker Image')    {
+        
+        try {
   
         sh "docker build -t dockerglam/capstone_petclinic:${BUILD_ID} ."
         sh "docker tag dockerglam/capstone_petclinic:${BUILD_ID} dockerglam/capstone_petclinic:latest"
         
         echo '*************Petclinic Docker Image build is Successful************'
+        }
+        catch(error) {
+            //Do nothing
+        }
     
     }
     
