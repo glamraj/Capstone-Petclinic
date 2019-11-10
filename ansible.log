@@ -120,3 +120,41 @@
 2019-10-31 18:32:10,585 p=31612 u=root |  changed: [localhost]
 2019-10-31 18:32:10,593 p=31612 u=root |  PLAY RECAP *********************************************************************************************************************
 2019-10-31 18:32:10,593 p=31612 u=root |  localhost                  : ok=5    changed=4    unreachable=0    failed=0   
+2019-11-10 16:48:47,256 p=14081 u=root |  PLAY [localhost] *****************************************************************************************************************************
+2019-11-10 16:48:47,387 p=14081 u=root |  TASK [Gathering Facts] ***********************************************************************************************************************
+2019-11-10 16:48:49,321 p=14081 u=root |  ok: [localhost]
+2019-11-10 16:48:49,338 p=14081 u=root |  TASK [clinic : Start SonarQube service] ******************************************************************************************************
+2019-11-10 16:49:03,897 p=14081 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+2019-11-10 16:49:03,897 p=14081 u=root |  changed: [localhost]
+2019-11-10 16:49:03,905 p=14081 u=root |  TASK [clinic : Start Nexus service] **********************************************************************************************************
+2019-11-10 16:49:04,691 p=14081 u=root |  changed: [localhost]
+2019-11-10 16:49:04,727 p=14081 u=root |  TASK [clinic : Start Tomcat Service] *********************************************************************************************************
+2019-11-10 16:49:05,336 p=14081 u=root |  changed: [localhost]
+2019-11-10 16:49:05,363 p=14081 u=root |  PLAY RECAP ***********************************************************************************************************************************
+2019-11-10 16:49:05,365 p=14081 u=root |  localhost                  : ok=4    changed=3    unreachable=0    failed=0   
+2019-11-10 23:06:17,585 p=23472 u=root |  ERROR! 'shell' is not a valid attribute for a Play
+
+The error appears to have been in '/home/osgdev/capstone/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic/roles/clinic/tasks/main.yml': line 4, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+  - name: Start SonarQube service
+    ^ here
+
+2019-11-10 23:06:35,402 p=24057 u=root |  PLAY [localhost] ***************************************************************
+2019-11-10 23:06:35,524 p=24057 u=root |  TASK [Gathering Facts] *********************************************************
+2019-11-10 23:06:37,415 p=24057 u=root |  ok: [localhost]
+2019-11-10 23:06:37,434 p=24057 u=root |  TASK [clinic : Start SonarQube service] ****************************************
+2019-11-10 23:06:38,478 p=24057 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather
+than running sudo
+
+2019-11-10 23:06:38,478 p=24057 u=root |  changed: [localhost]
+2019-11-10 23:06:38,485 p=24057 u=root |  TASK [clinic : Start Nexus service] ********************************************
+2019-11-10 23:06:39,027 p=24057 u=root |  changed: [localhost]
+2019-11-10 23:06:39,043 p=24057 u=root |  TASK [clinic : Start Tomcat Service] *******************************************
+2019-11-10 23:06:39,383 p=24057 u=root |  changed: [localhost]
+2019-11-10 23:06:39,388 p=24057 u=root |  PLAY RECAP *********************************************************************
+2019-11-10 23:06:39,388 p=24057 u=root |  localhost                  : ok=4    changed=3    unreachable=0    failed=0   

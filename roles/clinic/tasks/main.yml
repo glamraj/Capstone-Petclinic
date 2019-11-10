@@ -9,9 +9,9 @@
     shell: sudo service nexus restart
     ignore_errors: True
 
-#  - name: Start Tomcat Service
-#    shell: sudo tomcatup
-#    ignore_errors: True
+  - name: Start Tomcat Service
+    shell: sudo tomcatup
+    ignore_errors: True
 
 #  - name: Start CAdvisor service
 #    shell: sudo docker container restart cadvisor
