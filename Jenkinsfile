@@ -227,13 +227,14 @@ node{
         }
     }
     
-        stage('Docker Image - Cleanup')    {
+        stage('Docker Images - Cleanup')    {
         
         try {     
         
             //destroy local images to download Image from Dockerhub
             sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
-            sh "docker rmi dockerglam/capstone_petclinic:latest"
+            sh "docker image prune -f"
+            //sh "docker rmi dockerglam/capstone_petclinic:latest"
             
             echo '*************Local Image destroy is Successful************'
         }
