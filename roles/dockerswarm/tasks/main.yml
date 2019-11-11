@@ -1,24 +1,30 @@
 ---
 # tasks file for ./roles/dockerswarm
 
-  #- name: Show available containers - pre scanling
-    #shell: docker container ls
-
-  #- name: Swarm kill
-   # shell: docker swarm leave --force
-
-#  - name: Remove previous mypetclinic service
-#    shell: docker service rm mypetclinic
-#    ignore_errors: True
-
-#  - name: Create Replicas
-#    shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
-#    ignore_errors: True
+  - name: Build Petclinic Docker Image
+    shell: docker build -t dockerglam/capstone_petclinic:${BUILD_ID} .
+    ignore_errors: False
     
-#  - name: Auto Scale Instances
-#    shell: docker service scale mypetclinic=5
-#    ignore_errors: True
-
- # - name: Show available containers - post scanling
-  #  shell: docker container ls
-
+  - name: Build Petclinic tag Image:latest
+    shell: docker tag dockerglam/capstone_petclinic:${BUILD_ID} dockerglam/capstone_petclinic:latest
+    ignore_errors: False    
+    
+  - name: Undeploy Petclinic - Stop previous docker container
+    shell: docker container stop mypetclinic
+    ignore_errors: True
+    
+  - name: Undeploy Petclinic - Remove previous docker container
+    shell: docker container rm mypetclinic
+    ignore_errors: True
+    
+  - name: Undeploy Petclinic - Remove previous docker service
+    shell: docker service rm mypetclinic
+    ignore_errors: True
+    
+  - name: Deploy Petclinic - Latest version
+    shell: docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest
+    ignore_errors: False
+    
+  - name: Docker Swarm Service create - Auto scale
+    shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
+    ignore_errors: True
