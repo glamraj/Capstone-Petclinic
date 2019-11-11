@@ -101,7 +101,7 @@ node{
             //Do nothing
             echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
       }
-    } */
+    } 
     
         stage ("Artifactory upload in Nexus")  {
             
@@ -118,9 +118,25 @@ node{
             //Do nothing
         }
 	    
+    } */
+    
+    
+        stage('Build Petclinic Docker Image')    {
+        
+        try {
+  
+        sh "docker build -t dockerglam/capstone_petclinic:${BUILD_ID} ."
+        sh "docker tag dockerglam/capstone_petclinic:${BUILD_ID} dockerglam/capstone_petclinic:latest"
+        
+        echo '*************Petclinic Docker Image build is Successful************'
+        }
+        catch(error) {
+            //Do nothing
+        }
+    
     }
     
-        stage('Ansible Playbook - Docker Container Deployment')    {
+    stage('Ansible Playbook - Docker Container Deployment')    {
             
         try {
             
@@ -137,22 +153,7 @@ node{
 
     }
     
-    /*    stage('Build Petclinic Docker Image')    {
-        
-        try {
-  
-        sh "docker build -t dockerglam/capstone_petclinic:${BUILD_ID} ."
-        sh "docker tag dockerglam/capstone_petclinic:${BUILD_ID} dockerglam/capstone_petclinic:latest"
-        
-        echo '*************Petclinic Docker Image build is Successful************'
-        }
-        catch(error) {
-            //Do nothing
-        }
-    
-    }
-    
-        stage('Undeploy Petclinic - Previous version')  {
+    /*    stage('Undeploy Petclinic - Previous version')  {
         
         try {
             
