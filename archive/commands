@@ -72,7 +72,7 @@ docker container ls
 
 
 ###########Cadvisor################
-docker run --volume=/:/rootfs:ro --volume=/var/run:/var/run:ro --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --volume=/dev/disk/:/dev/disk:ro --publish=8082:8080 --detach=true --name=cadvisor google/cadvisor:latest
+docker run --volume=/:/rootfs:ro --volume=/var/run:/var/run:ro --volume=/sys:/sys:ro --volume=/var/lib/docker/:/var/lib/docker:ro --volume=/dev/disk/:/dev/disk:ro --publish=8085:8080 --detach=true --name=cadvisor google/cadvisor:latest
 
 
 ###GITLAB access token###
@@ -82,3 +82,9 @@ gATxzBU1R4GHscBrd2k7
 #########################
 ip vdi- github webhook
 http://10.199.8.114:8080/project/Petclinic
+
+Clear Cache
+echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'
+
+
+su -c "echo 3 >'/proc/sys/vm/drop_caches' && swapoff -a && swapon -a && printf '\n%s\n' 'Ram-cache and Swap Cleared'" root
