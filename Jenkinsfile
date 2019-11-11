@@ -24,7 +24,7 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn clean package"
+        sh "${mvnHome}/bin/mvn clean package -Dv=${BUILD_NUMBER}"
 	    
 	    echo '*************Build & Package is Successful************'
 	    
@@ -101,7 +101,7 @@ node{
             //Do nothing
             echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
       }
-    } 
+    } */
     
         stage ("Artifactory upload in Nexus")  {
             
@@ -109,7 +109,7 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn deploy -U -DskipTests -Dmaven.main.skip"
+        sh "${mvnHome}/bin/mvn deploy -U -DskipTests -Dmaven.main.skip -Dv=${BUILD_NUMBER}"
 	    
 	    echo '*************Artifacts upload in Nexus is Successful************'
 	    
@@ -118,9 +118,9 @@ node{
             //Do nothing
         }
 	    
-    } */
+    }
     
-    
+    /*
         stage('Build Petclinic Docker Image')    {
         
         try {
@@ -151,7 +151,7 @@ node{
             
         }
 
-    }
+    }*/
     
     /*    stage('Undeploy Petclinic - Previous version')  {
         
