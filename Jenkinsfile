@@ -35,23 +35,6 @@ node{
 	    
     }
     
-    stage('Ansible Playbook - Preparing the Environment & Services')    {
-            
-        try {
-            
-            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/clinic/clinic.yml'
-            
-            echo "*******Ansible Playbook execution- Preparing environment Successful********"
-            
-        }
-        catch(error)    {
-            
-            echo "*******Preparing environment failed. Please check Ansible log********"
-            
-        }
-
-    }
-    
         stage('SonarQube Code Analysis')    {
             
         try {
@@ -137,7 +120,24 @@ node{
 	    
     }
     
-        stage('Build Petclinic Docker Image')    {
+        stage('Ansible Playbook - Docker Container Deployment')    {
+            
+        try {
+            
+            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/clinic/dockerswarm.yml'
+            
+            echo "*******Ansible Playbook execution- Deployment is Successful********"
+            
+        }
+        catch(error)    {
+            
+            echo "*******Deployment failed. Please check Ansible log********"
+            
+        }
+
+    }
+    
+    /*    stage('Build Petclinic Docker Image')    {
         
         try {
   
@@ -190,7 +190,7 @@ node{
             //do nothing if container not running
         }
             
-    }
+    } */
     
         stage('Dockerhub Image Versioning - Login')   {
         
