@@ -6,7 +6,7 @@
     <artifactId>spring-petclinic</artifactId>
     <version>4.2.5-SNAPSHOT.${v}</version>
 
-    <name>petclinic.${v}</name>
+    <name>petclinic</name>
     <packaging>war</packaging>
 
     <properties>
