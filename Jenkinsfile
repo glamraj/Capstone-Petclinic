@@ -72,6 +72,21 @@ node{
             
     }
     
+        stage('JUnit Report Generation')    {
+            
+            try {
+
+            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
+        
+            echo '*************JUnit Report Generation is Successful***************'
+            
+            }
+            catch(error) {
+            //Do nothing
+            }
+            
+    }
+    
         stage("Quality Gate Check") {
             
         sleep(60)
