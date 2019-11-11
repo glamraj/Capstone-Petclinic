@@ -35,7 +35,7 @@ node{
 	    
     }
     
-        /*stage('SonarQube Code Analysis')    {
+        stage('SonarQube Code Analysis')    {
             
         try {
             
@@ -101,7 +101,7 @@ node{
             //Do nothing
             echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
       }
-    } */
+    }
     
         stage ("Artifactory upload in Nexus")  {
             
@@ -120,7 +120,6 @@ node{
 	    
     }
     
-    /*
         stage('Build Petclinic Docker Image')    {
         
         try {
@@ -151,47 +150,7 @@ node{
             
         }
 
-    }*/
-    
-    /*    stage('Undeploy Petclinic - Previous version')  {
-        
-        try {
-            
-            //pre-requsites for deploying in dev environment
-            sh "docker container stop mypetclinic"
-            sh "docker container rm mypetclinic"
-            sh "docker service rm mypetclinic"
-            
-            echo '*************Undeploying previous Petclinic version is Successful************'
-            
-        }
-        
-        catch(error)    {
-            //do nothing if container not running
-        }
     }
-    
-        stage('Deploy Petclinic - Latest version')  {
-        
-        try {
-            
-        sh "docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest"
-        
-        echo '*************Deploying latest Petclinic version is Successful************'
-        
-        sh "docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest"
-    
-        //sh "docker service scale mypetclinic=3"
-        
-        echo '*************Docker Swarm Service create and Auto scale is Successful************'
-        
-        }
-        
-        catch(error)    {
-            //do nothing if container not running
-        }
-            
-    } */
     
         stage('Dockerhub Image Versioning - Login')   {
         
