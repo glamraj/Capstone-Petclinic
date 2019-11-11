@@ -2,11 +2,11 @@
 # tasks file for ./roles/dockerswarm
 
   - name: Undeploy Petclinic - Stop previous docker container
-    shell: docker container stop mypetclinic
+    shell: docker stop mypetclinic
     ignore_errors: True
     
   - name: Undeploy Petclinic - Remove previous docker container
-    shell: docker container rm mypetclinic
+    shell: docker rm mypetclinic
     ignore_errors: True
     
   - name: Undeploy Petclinic - Remove previous docker service
