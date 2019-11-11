@@ -135,43 +135,7 @@ node{
     
     }
     
-    stage('Ansible Playbook - Docker Container Deployment')    {
-            
-        try {
-            
-            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/dockerswarm/swarm.yml'
-            
-            echo "*******Ansible Playbook execution- Deployment is Successful********"
-            
-        }
-        catch(error)    {
-            
-            echo "*******Deployment failed. Please check Ansible log********"
-            
-        }
-
-    }
-    
-        stage('Dockerhub Image Versioning - Login')   {
-        
-        try {
-        
-        withCredentials([usernamePassword(credentialsId: 'ra20080937dockerglam', passwordVariable: 'dockerpass', usernameVariable: 'dockerlogin')]) {
-            
-    	sh "docker login -u ${dockerlogin} -p ${dockerpass}"
-    	
-    	echo '*************Dockerhub login is Successful************'
-
-        }
-        
-        }
-        catch(error)    {
-            //do nothing if container not running
-        }
-        
-    }
-
-        stage('Dockerhub Image Versioning - Image Push')    {
+    stage('Dockerhub Image Versioning - Image Push')    {
         
         try {
         //Push to Dockerhub
@@ -187,7 +151,7 @@ node{
         }
     }
     
-        stage('Docker Images - Cleanup')    {
+    stage('Docker Image - Cleanup')    {
         
         try {     
         
@@ -203,6 +167,23 @@ node{
             //do nothing if container not running
         }
             
+    }
+    
+    stage('Ansible Playbook - Docker Container Deployment')    {
+            
+        try {
+            
+            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/dockerswarm/swarm.yml'
+            
+            echo "*******Ansible Playbook execution- Deployment is Successful********"
+            
+        }
+        catch(error)    {
+            
+            echo "*******Deployment failed. Please check Ansible log********"
+            
+        }
+
     }
     
 } /* try end brace */
