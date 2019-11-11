@@ -12,6 +12,10 @@
   - name: Undeploy Petclinic - Remove previous docker service
     shell: docker service rm mypetclinic
     ignore_errors: True
+
+  - name: Undeploy Petclinic - Remove dangling images, containers
+    shell: docker system prune -f
+    ignore_errors: True    
     
   - name: Deploy Petclinic - Latest version
     shell: docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest
