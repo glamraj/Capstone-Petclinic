@@ -124,7 +124,7 @@ node{
             
         try {
             
-            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/swarm/dockerswarm.yml'
+            ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/dockerswarm/swarm.yml'
             
             echo "*******Ansible Playbook execution- Deployment is Successful********"
             
