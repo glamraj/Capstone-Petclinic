@@ -35,7 +35,7 @@ node{
 	    
     }
     
-        stage('SonarQube Code Analysis')    {
+        /*stage('SonarQube Code Analysis')    {
             
         try {
             
@@ -101,7 +101,7 @@ node{
             //Do nothing
             echo '*************Quality Gate Check is still In Progress..Moving on to next steps**********'
       }
-    } 
+    } */
     
         stage ("Artifactory upload in Nexus")  {
             
