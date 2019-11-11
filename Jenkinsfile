@@ -1,14 +1,4 @@
 node{
-    
-    def uploadSpec = """{
-           "files": [
-               {
-               "pattern": "target/BSP-SNAPSHOT-1.1.${BUILD_NUMBER}.war",
-                   "target": "libs-snapshot-local/com/workout/BSP/1.2.1-SNAPSHOT/"
-               }
-               ]
-           }"""
-
 
     try     { /* try start brace */
         
