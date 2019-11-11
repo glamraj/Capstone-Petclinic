@@ -178,9 +178,9 @@ node{
         
         echo '*************Deploying latest Petclinic version is Successful************'
         
-        sh "docker service create --name mypetclinic --replicas 2 -p 9090:8080 dockerglam/capstone_petclinic:latest"
+        sh "docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest"
     
-        sh "docker service scale mypetclinic=3"
+        //sh "docker service scale mypetclinic=3"
         
         echo '*************Docker Swarm Service create and Auto scale is Successful************'
         
