@@ -17,6 +17,11 @@
     shell: sudo docker container restart cadvisor
     ignore_errors: True
 
+  - name: Remove previous container and services
+    shell: sudo docker container rm mypetclinic
+    ignore_errors: True
+
+
 #  - name: Start Docker service
 #shell: sudo service docker restart
 #ignore_errors: True
