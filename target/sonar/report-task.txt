@@ -1,0 +1,6 @@
+projectKey=org.springframework.samples:spring-petclinic
+serverUrl=http://localhost:9000/sonar
+serverVersion=6.4.0.25310
+dashboardUrl=http://localhost:9000/sonar/dashboard/index/org.springframework.samples:spring-petclinic
+ceTaskId=AW5ftXByT9NmZsDAcz5q
+ceTaskUrl=http://localhost:9000/sonar/api/ce/task?id=AW5ftXByT9NmZsDAcz5q
