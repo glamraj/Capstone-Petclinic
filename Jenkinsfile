@@ -55,21 +55,21 @@ node{
         
     }
     
-        stage('JACOCO Report Generation')    {
-            
-            try {
-            
-            jacoco()
+        stage('Run JMeter Test')  {
 
-            step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+        try {
+            
+        def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
+
+        step([$class: 'ArtifactArchiver', artifacts: 'src/test/jmeter/petclinic_test_plan.jmx', fingerprint: true])
+
+        echo '*************JMeter test run is Successful***************'
         
-            echo '*************Jacoco Report Generation is Successful***************'
-            
-            }
-            catch(error) {
-            //Do nothing
-            }
-            
+        }
+        catch(error) {
+        //Do nothing
+        }
+
     }
     
         stage('JUnit Report Generation')    {
