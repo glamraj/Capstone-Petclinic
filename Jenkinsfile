@@ -72,21 +72,6 @@ node{
 
     }
     
-        stage('JUnit Report Generation')    {
-            
-            try {
-
-            junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
-        
-            echo '*************JUnit Report Generation is Successful***************'
-            
-            }
-            catch(error) {
-            //Do nothing
-            }
-            
-    }
-    
         stage("Quality Gate Check") {
             
         sleep(60)
@@ -176,9 +161,9 @@ node{
             
             echo '*************Local Image destroy is Successful************'
             
-            //sh "docker image prune -f"
-            //sh "docker system prune -f"
-            //echo '*************Destroy dangling images is Successful************'
+            sh "docker image prune -f"
+            sh "docker system prune -f"
+            echo '*************Destroy dangling images is Successful************'
         }
         
         catch(error)    {
