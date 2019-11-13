@@ -167,7 +167,7 @@ node{
         
             //destroy local images to download Image from Dockerhub
             sh "docker rmi dockerglam/capstone_petclinic:${BUILD_ID}"
-            sh "docker rmi dockerglam/capstone_petclinic:latest"
+            //sh "docker rmi dockerglam/capstone_petclinic:latest"
             
             echo '*************Local Image destroy is Successful************'
             
