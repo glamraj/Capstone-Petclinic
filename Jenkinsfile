@@ -190,12 +190,14 @@ node{
             
             echo "*******Ansible Playbook execution- Deployment is Successful********"
             
-            emailext attachLog: true, body: '''Hi,
+            mail bcc: '', body: '''Hi,
 
-                Please check the attached build log. The Deployment is Successful.
+            The Deployment has finished successfully. Please check the portal.
 
-                Regards,
-                Jenkins''', recipientProviders: [developers()], subject: 'Jenkins Job Update - Petclinic', to: 'rajib.chowdhury3@wipro.com'
+            http://localhost:9090/petclinic/
+
+            Regards,
+            Jenkins''', cc: 'md.akram@wipro.com', from: '', replyTo: '', subject: 'Job Updates - Petclinic', to: 'rajib.chowdhury3@wipro.com'
             
         }
         catch(error)    {
