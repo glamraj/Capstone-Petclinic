@@ -35,7 +35,7 @@ node{
 	    
     }
     
-    stage('JACOCO Report Generation')    {
+    stage('JACOCO Code Coverage Test')    {
             
             jacoco()
 
@@ -65,7 +65,7 @@ node{
         
     }
     
-        stage('Run JMeter Test')  {
+        stage('Run JMeter Performance Testing')  {
 
         try {
             
