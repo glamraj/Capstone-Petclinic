@@ -180,7 +180,7 @@ node{
             //do nothing if container not running
         }
             
-    } */
+    }
     
     stage('Ansible Playbook - Docker Container Deployment')    {
             
@@ -190,11 +190,6 @@ node{
             
             echo "*******Ansible Playbook execution- Deployment is Successful********"
             
-            emailext body: "Pipeline error: ${error}\nPlease go to ${BUILD_URL} and verify the build",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "'${JOB_NAME}' (${BUILD_NUMBER}) failed",
-                to: 'rajib.chowdhury3@wipro.com'
-            
         }
         catch(error)    {
             
@@ -202,7 +197,19 @@ node{
             
         }
 
+    }*/
+    
+    stage('Email')    {
+     mail bcc: '', body: '''Hi,
+
+The Deployment has finished successfully. Please check the portal.
+
+http://localhost:9090/petclinic/
+
+Regards,
+Jenkins''', cc: 'md.akram@wipro.com', from: '', replyTo: '', subject: 'Job Updates - Petclinic', to: 'rajib.chowdhury3@wipro.com'   
     }
+    
     
 } /* try end brace */
    
