@@ -35,6 +35,16 @@ node{
 	    
     }
     
+    stage('JACOCO Report Generation')    {
+            
+            jacoco()
+
+            step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
+        
+            echo '*************Jacoco Report Generation is Successful***************'
+            
+    }
+    
         stage('SonarQube Code Analysis')    {
             
         try {
