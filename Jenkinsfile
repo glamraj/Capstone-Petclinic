@@ -82,7 +82,7 @@ node{
 
     }
     
-        stage("Quality Gate Check") {
+        stage("SonarQube Quality Gate Check") {
             
         sleep(60)
         
@@ -96,13 +96,13 @@ node{
                   
                   error "Pipeline aborted due to quality gate failure: ${qg.status}"
                   echo "QG Status: ${qg.status}"
-                  echo '*************Quality Gate Check is Unsuccessful.. Aborting Deployment**********'
+                  echo '*************SonarQube Quality Gate Check is Unsuccessful.. Aborting Deployment**********'
                   
             }
               
               else  {
                   
-                  echo '*************SonarQube Quality Gate Check is Successful*************'
+                  echo '*************SonarQube Quality Gate Check has failed*************'
                   
             }
         }
@@ -189,6 +189,13 @@ node{
             ansiblePlaybook become: true, credentialsId: 'ansible-pass', installation: 'ansible-server', playbook: './roles/dockerswarm/swarm.yml'
             
             echo "*******Ansible Playbook execution- Deployment is Successful********"
+            
+            emailext attachLog: true, body: '''Hi,
+
+                Please check the attached build log. The Deployment is Successful.
+
+                Regards,
+                Jenkins''', recipientProviders: [developers()], subject: 'Jenkins Job Update - Petclinic', to: 'rajib.chowdhury3@wipro.com;md.akram@wipro.com'
             
         }
         catch(error)    {
