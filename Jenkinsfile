@@ -4,7 +4,7 @@ node{
         
         // notifyBuild('STARTED')
 
-        /*stage('GITLab CheckOut')  {
+        stage('GITLab CheckOut')  {
         
         try {
             //git 'https://topgear-training-gitlab.wipro.com/RA20080937/capstone-batch17-petclinic.git'
@@ -197,9 +197,9 @@ node{
             
         }
 
-    }*/
+    }
     
-    stage('Email')    {
+    /* stage('Email')    {
      mail bcc: '', body: '''Hi,
 
 The Deployment has finished successfully. Please check the portal.
@@ -208,7 +208,7 @@ http://localhost:9090/petclinic/
 
 Regards,
 Jenkins''', cc: 'md.akram@wipro.com', from: '', replyTo: '', subject: 'Job Updates - Petclinic', to: 'rajib.chowdhury3@wipro.com'   
-    }
+    } */
     
     
 } /* try end brace */
