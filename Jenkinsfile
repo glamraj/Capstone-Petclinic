@@ -4,7 +4,7 @@ node{
         
         // notifyBuild('STARTED')
 
-        stage('GITLab CheckOut')  {
+        /*stage('GITLab CheckOut')  {
         
         try {
             //git 'https://topgear-training-gitlab.wipro.com/RA20080937/capstone-batch17-petclinic.git'
@@ -180,7 +180,7 @@ node{
             //do nothing if container not running
         }
             
-    }
+    } */
     
     stage('Ansible Playbook - Docker Container Deployment')    {
             
@@ -195,7 +195,7 @@ node{
                 Please check the attached build log. The Deployment is Successful.
 
                 Regards,
-                Jenkins''', recipientProviders: [developers()], subject: 'Jenkins Job Update - Petclinic', to: 'rajib.chowdhury3@wipro.com;md.akram@wipro.com'
+                Jenkins''', recipientProviders: [developers()], subject: 'Jenkins Job Update - Petclinic', to: 'rajib.chowdhury3@wipro.com'
             
         }
         catch(error)    {
