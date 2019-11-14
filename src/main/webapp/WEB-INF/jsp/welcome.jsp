@@ -13,8 +13,9 @@
 <div class="container">
     <jsp:include page="fragments/bodyHeader.jsp"/>
 
-    <font color="yellow"> <h2> Welcome to the Petclinic..</h2> </font>
-    <font color="blue"> <h4> Get the 1st checkup free entire this week.. </h4> </font>
+    <font color="blue"> <h2> Welcome to the Petclinic..</h2> </font>
+    <font color="green"> <h4> Register you today </h4> </font>
+    <font color="red"> <h5> Get the 1st checkup free entire this week.. </h5> </font>
     
     <spring:url value="/resources/images/pets.png" htmlEscape="true" var="petsImage"/>
     <img src="${petsImage}"/>
