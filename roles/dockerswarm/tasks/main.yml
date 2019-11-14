@@ -17,9 +17,9 @@
     shell: docker system prune -f
     ignore_errors: True    
     
-  #- name: Deploy Petclinic - Latest version
-  #  shell: docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest
-  #  ignore_errors: False
+  - name: Deploy Petclinic - Latest version
+    shell: docker run -d -p 9090:8080 --name mypetclinic dockerglam/capstone_petclinic:latest
+    ignore_errors: False
     
   - name: Docker Swarm Service create - Auto scale
     shell: docker service create --name mypetclinic --replicas 3 -p 9090:8080 dockerglam/capstone_petclinic:latest
