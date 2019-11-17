@@ -7,10 +7,10 @@ node{
         stage('GITLab CheckOut')  {
         
         try {
-            //git 'https://topgear-training-gitlab.wipro.com/RA20080937/capstone-batch17-petclinic.git'
-	        git 'https://topgear-training-gitlab.wipro.com/RA20080937/DevOpsProfessional_Batch17_CapstoneProject_OnlineAppointment_ThePetClinic.git'
+            
+	        git 'https://github.com/glamraj/capstone-petclinic.git'
         
-            echo '*************GITLab Checkout is Successful************'
+            	echo '*************GITLab Checkout is Successful************'
         }
         catch(error) {
             //Do nothing
@@ -18,7 +18,7 @@ node{
     
     }
 
-        stage ("Maven Stage BUILD & PACKAGE")   {
+        /* stage ("Maven Stage BUILD & PACKAGE")   {
         
         try {
         
@@ -197,7 +197,7 @@ node{
             
         }
 
-    }
+    } */
     
     /* stage('Email')    {
      mail bcc: '', body: '''Hi,
