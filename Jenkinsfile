@@ -24,7 +24,7 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn -X clean package -Dv=${BUILD_NUMBER}"
+        sh "${mvnHome}/bin/mvn clean install -Dv=${BUILD_NUMBER}"
 	    
 	    echo '*************Build & Package is Successful************'
 	    
@@ -35,7 +35,7 @@ node{
 	    
     }
     
-    	stage('JACOCO Code Coverage Test')    {
+    	/*stage('JACOCO Code Coverage Test')    {
             
             jacoco()
 
@@ -45,7 +45,7 @@ node{
             
     }
     
-        /*stage('SonarQube Code Analysis')    {
+        stage('SonarQube Code Analysis')    {
             
         try {
             
