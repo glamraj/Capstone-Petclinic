@@ -35,7 +35,7 @@ node{
 	    
     }
     
-    /*stage('JACOCO Code Coverage Test')    {
+    	stage('JACOCO Code Coverage Test')    {
             
             jacoco()
 
@@ -45,7 +45,7 @@ node{
             
     }
     
-        stage('SonarQube Code Analysis')    {
+        /*stage('SonarQube Code Analysis')    {
             
         try {
             
