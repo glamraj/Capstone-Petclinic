@@ -18,7 +18,7 @@ node{
     
     }
 
-        /* stage ("Maven Stage BUILD & PACKAGE")   {
+        stage ("Maven Stage BUILD & PACKAGE")   {
         
         try {
         
@@ -35,7 +35,7 @@ node{
 	    
     }
     
-    stage('JACOCO Code Coverage Test')    {
+    /*stage('JACOCO Code Coverage Test')    {
             
             jacoco()
 
