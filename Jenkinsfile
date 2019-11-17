@@ -24,7 +24,7 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn clean package -Dv=${BUILD_NUMBER}"
+        sh "${mvnHome}/bin/mvn -X clean package -Dv=${BUILD_NUMBER}"
 	    
 	    echo '*************Build & Package is Successful************'
 	    
