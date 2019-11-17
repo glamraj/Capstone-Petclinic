@@ -218,3 +218,93 @@ than running sudo
 2019-11-13 10:29:02,912 p=27463 u=root |  changed: [localhost]
 2019-11-13 10:29:02,930 p=27463 u=root |  PLAY RECAP ***********************************************************************************************************************************
 2019-11-13 10:29:02,930 p=27463 u=root |  localhost                  : ok=6    changed=5    unreachable=0    failed=0   
+2019-11-13 21:33:34,193 p=16101 u=root |  PLAY [localhost] *****************************************************************************************************************************
+2019-11-13 21:33:34,289 p=16101 u=root |  TASK [Gathering Facts] ***********************************************************************************************************************
+2019-11-13 21:33:35,550 p=16101 u=root |  ok: [localhost]
+2019-11-13 21:33:35,557 p=16101 u=root |  TASK [clinic : Start SonarQube service] ******************************************************************************************************
+2019-11-13 21:33:36,540 p=16101 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+2019-11-13 21:33:36,541 p=16101 u=root |  changed: [localhost]
+2019-11-13 21:33:36,563 p=16101 u=root |  TASK [clinic : Start Nexus service] **********************************************************************************************************
+2019-11-13 21:33:37,135 p=16101 u=root |  changed: [localhost]
+2019-11-13 21:33:37,148 p=16101 u=root |  TASK [clinic : Start Tomcat Service] *********************************************************************************************************
+2019-11-13 21:33:37,607 p=16101 u=root |  changed: [localhost]
+2019-11-13 21:33:37,624 p=16101 u=root |  TASK [clinic : Start CAdvisor service] *******************************************************************************************************
+2019-11-13 21:33:47,544 p=16101 u=root |  changed: [localhost]
+2019-11-13 21:33:47,590 p=16101 u=root |  TASK [clinic : Remove previous container and services] ***************************************************************************************
+2019-11-13 21:33:48,615 p=16101 u=root |  fatal: [localhost]: FAILED! => {"changed": true, "cmd": "sudo docker container rm mypetclinic", "delta": "0:00:00.075906", "end": "2019-11-13 21:33:48.577879", "msg": "non-zero return code", "rc": 1, "start": "2019-11-13 21:33:48.501973", "stderr": "Error: No such container: mypetclinic", "stderr_lines": ["Error: No such container: mypetclinic"], "stdout": "", "stdout_lines": []}
+2019-11-13 21:33:48,615 p=16101 u=root |  ...ignoring
+2019-11-13 21:33:48,624 p=16101 u=root |  PLAY RECAP ***********************************************************************************************************************************
+2019-11-13 21:33:48,624 p=16101 u=root |  localhost                  : ok=6    changed=5    unreachable=0    failed=0   
+2019-11-14 11:13:03,135 p=9624 u=root |  PLAY [localhost] ***************************************************************
+2019-11-14 11:13:03,265 p=9624 u=root |  TASK [Gathering Facts] *********************************************************
+2019-11-14 11:13:04,677 p=9624 u=root |  ok: [localhost]
+2019-11-14 11:13:04,684 p=9624 u=root |  TASK [clinic : Start SonarQube service] ****************************************
+2019-11-14 11:13:05,678 p=9624 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather
+than running sudo
+
+2019-11-14 11:13:05,679 p=9624 u=root |  changed: [localhost]
+2019-11-14 11:13:05,684 p=9624 u=root |  TASK [clinic : Start Nexus service] ********************************************
+2019-11-14 11:13:06,183 p=9624 u=root |  changed: [localhost]
+2019-11-14 11:13:06,202 p=9624 u=root |  TASK [clinic : Start Tomcat Service] *******************************************
+2019-11-14 11:13:06,692 p=9624 u=root |  changed: [localhost]
+2019-11-14 11:13:06,701 p=9624 u=root |  TASK [clinic : Start CAdvisor service] *****************************************
+2019-11-14 11:13:13,872 p=9624 u=root |  changed: [localhost]
+2019-11-14 11:13:13,906 p=9624 u=root |  TASK [clinic : Remove previous container and services] *************************
+2019-11-14 11:13:15,218 p=9624 u=root |  fatal: [localhost]: FAILED! => {"changed": true, "cmd": "sudo docker container rm mypetclinic", "delta": "0:00:00.205732", "end": "2019-11-14 11:13:15.189167", "msg": "non-zero return code", "rc": 1, "start": "2019-11-14 11:13:14.983435", "stderr": "Error: No such container: mypetclinic", "stderr_lines": ["Error: No such container: mypetclinic"], "stdout": "", "stdout_lines": []}
+2019-11-14 11:13:15,218 p=9624 u=root |  ...ignoring
+2019-11-14 11:13:15,236 p=9624 u=root |  PLAY RECAP *********************************************************************
+2019-11-14 11:13:15,238 p=9624 u=root |  localhost                  : ok=6    changed=5    unreachable=0    failed=0   
+2019-11-14 14:49:06,110 p=17753 u=root |  PLAY [localhost] *****************************************************************************************************************************
+2019-11-14 14:49:06,215 p=17753 u=root |  TASK [Gathering Facts] ***********************************************************************************************************************
+2019-11-14 14:49:07,730 p=17753 u=root |  ok: [localhost]
+2019-11-14 14:49:07,737 p=17753 u=root |  TASK [clinic : Start SonarQube service] ******************************************************************************************************
+2019-11-14 14:49:09,204 p=17753 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+2019-11-14 14:49:09,211 p=17753 u=root |  changed: [localhost]
+2019-11-14 14:49:09,237 p=17753 u=root |  TASK [clinic : Start Nexus service] **********************************************************************************************************
+2019-11-14 14:49:10,202 p=17753 u=root |  changed: [localhost]
+2019-11-14 14:49:10,209 p=17753 u=root |  TASK [clinic : Start Tomcat Service] *********************************************************************************************************
+2019-11-14 14:49:11,296 p=17753 u=root |  changed: [localhost]
+2019-11-14 14:49:11,303 p=17753 u=root |  TASK [clinic : Start CAdvisor service] *******************************************************************************************************
+2019-11-14 14:49:21,249 p=17753 u=root |  changed: [localhost]
+2019-11-14 14:49:21,294 p=17753 u=root |  TASK [clinic : Remove previous container and services] ***************************************************************************************
+2019-11-14 14:49:23,312 p=17753 u=root |  changed: [localhost]
+2019-11-14 14:49:23,330 p=17753 u=root |  PLAY RECAP ***********************************************************************************************************************************
+2019-11-14 14:49:23,330 p=17753 u=root |  localhost                  : ok=6    changed=5    unreachable=0    failed=0   
+2019-11-14 20:18:51,646 p=30600 u=root |  PLAY [localhost] ***************************************************************
+2019-11-14 20:18:51,741 p=30600 u=root |  TASK [Gathering Facts] *********************************************************
+2019-11-14 20:18:52,861 p=30600 u=root |  ok: [localhost]
+2019-11-14 20:18:52,868 p=30600 u=root |  TASK [clinic : Start SonarQube service] ****************************************
+2019-11-14 20:18:53,846 p=30600 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather
+than running sudo
+
+2019-11-14 20:18:53,846 p=30600 u=root |  changed: [localhost]
+2019-11-14 20:18:53,852 p=30600 u=root |  TASK [clinic : Start Nexus service] ********************************************
+2019-11-14 20:18:54,377 p=30600 u=root |  changed: [localhost]
+2019-11-14 20:18:54,384 p=30600 u=root |  TASK [clinic : Start Tomcat Service] *******************************************
+2019-11-14 20:18:54,716 p=30600 u=root |  changed: [localhost]
+2019-11-14 20:18:54,728 p=30600 u=root |  TASK [clinic : Start CAdvisor service] *****************************************
+2019-11-14 20:19:02,160 p=30600 u=root |  changed: [localhost]
+2019-11-14 20:19:02,198 p=30600 u=root |  TASK [clinic : Remove previous container and services] *************************
+2019-11-14 20:19:03,598 p=30600 u=root |  changed: [localhost]
+2019-11-14 20:19:03,604 p=30600 u=root |  PLAY RECAP *********************************************************************
+2019-11-14 20:19:03,604 p=30600 u=root |  localhost                  : ok=6    changed=5    unreachable=0    failed=0   
+2019-11-15 10:44:27,841 p=15151 u=root |  PLAY [localhost] *****************************************************************************************************************************
+2019-11-15 10:44:27,971 p=15151 u=root |  TASK [Gathering Facts] ***********************************************************************************************************************
+2019-11-15 10:44:29,922 p=15151 u=root |  ok: [localhost]
+2019-11-15 10:44:29,942 p=15151 u=root |  TASK [clinic : Start SonarQube service] ******************************************************************************************************
+2019-11-15 10:44:31,261 p=15151 u=root |   [WARNING]: Consider using 'become', 'become_method', and 'become_user' rather than running sudo
+
+2019-11-15 10:44:31,261 p=15151 u=root |  changed: [localhost]
+2019-11-15 10:44:31,277 p=15151 u=root |  TASK [clinic : Start Nexus service] **********************************************************************************************************
+2019-11-15 10:44:32,451 p=15151 u=root |  changed: [localhost]
+2019-11-15 10:44:32,463 p=15151 u=root |  TASK [clinic : Start Tomcat Service] *********************************************************************************************************
+2019-11-15 10:44:33,090 p=15151 u=root |  changed: [localhost]
+2019-11-15 10:44:33,108 p=15151 u=root |  TASK [clinic : Start CAdvisor service] *******************************************************************************************************
+2019-11-15 10:44:35,330 p=15151 u=root |  changed: [localhost]
+2019-11-15 10:44:35,373 p=15151 u=root |  TASK [clinic : Remove previous container and services] ***************************************************************************************
+2019-11-15 10:44:37,386 p=15151 u=root |  fatal: [localhost]: FAILED! => {"changed": true, "cmd": "sudo docker container rm mypetclinic", "delta": "0:00:00.261553", "end": "2019-11-15 10:44:37.320514", "msg": "non-zero return code", "rc": 1, "start": "2019-11-15 10:44:37.058961", "stderr": "Error: No such container: mypetclinic", "stderr_lines": ["Error: No such container: mypetclinic"], "stdout": "", "stdout_lines": []}
+2019-11-15 10:44:37,387 p=15151 u=root |  ...ignoring
+2019-11-15 10:44:37,397 p=15151 u=root |  PLAY RECAP ***********************************************************************************************************************************
+2019-11-15 10:44:37,398 p=15151 u=root |  localhost                  : ok=6    changed=5    unreachable=0    failed=0   
