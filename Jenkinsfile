@@ -45,7 +45,7 @@ node{
             
     }
     
-        /*stage('SonarQube Code Analysis')    {
+        stage('SonarQube Code Analysis')    {
             
         try {
             
@@ -65,7 +65,7 @@ node{
         
     }
     
-        stage('Run JMeter Performance Testing')  {
+        /*stage('Run JMeter Performance Testing')  {
 
         try {
             
