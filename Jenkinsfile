@@ -102,7 +102,7 @@ node{
               
               else  {
                   
-                  echo '*************SonarQube Quality Gate Check has failed*************'
+                  echo '*************SonarQube Quality Gate Check has Passed*************'
                   
             }
         }
