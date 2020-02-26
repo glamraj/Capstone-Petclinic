@@ -51,7 +51,7 @@ node{
             
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        withSonarQubeEnv('scan')    {
+        withSonarQubeEnv('Sonar')    {
             
             sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
             
