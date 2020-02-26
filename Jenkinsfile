@@ -65,7 +65,7 @@ node{
         
     }
     
-        /*stage('Run JMeter Performance Testing')  {
+        stage('Run JMeter Performance Testing')  {
 
         try {
             
@@ -113,7 +113,7 @@ node{
       }
     }
     
-        stage ("Artifactory upload in Nexus")  {
+        /*stage ("Artifactory upload in Nexus")  {
             
         try {
         
