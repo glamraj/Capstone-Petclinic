@@ -1,5 +1,5 @@
-pipeline{
-    agent any
+node{
+    //agent any
     try     { /* try start brace */ 
         
         // notifyBuild('STARTED')
