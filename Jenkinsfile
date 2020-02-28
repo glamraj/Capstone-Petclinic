@@ -130,7 +130,7 @@ node{
 	    
     }
     
-        /*stage('Build Petclinic Docker Image')    {
+        stage('Build Petclinic Docker Image')    {
         
         try {
   
@@ -182,7 +182,7 @@ node{
             
     }
     
-    stage('Ansible Playbook - Docker Container Deployment')    {
+    /*stage('Ansible Playbook - Docker Container Deployment')    {
             
         try {
             
