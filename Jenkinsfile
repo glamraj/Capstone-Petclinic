@@ -119,7 +119,7 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn deploy -U -DskipTests -Dmaven.main.skip -Dv=${BUILD_NUMBER}"
+        sh "${mvnHome}/bin/mvn deploy -e -U -DskipTests -Dmaven.main.skip -Dv=${BUILD_NUMBER}"
 	    
 	    echo '*************Artifacts upload in Nexus is Successful************'
 	    
