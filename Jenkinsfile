@@ -113,7 +113,7 @@ node{
       }
     }
     
-        /*stage ("Artifactory upload in Nexus")  {
+        stage ("Artifactory upload in Nexus")  {
             
         try {
         
@@ -130,7 +130,7 @@ node{
 	    
     }
     
-        stage('Build Petclinic Docker Image')    {
+        /*stage('Build Petclinic Docker Image')    {
         
         try {
   
