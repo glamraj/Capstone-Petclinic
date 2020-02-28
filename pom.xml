@@ -508,7 +508,7 @@
 
     <!-- CHANGE HERE by your team nexus server -->
 
-    <url>http://localhost:8081/repository/maven-releases/</url>
+    <url>http://34.93.220.52:8081/repository/maven-releases/</url>
 
   </repository>
 
@@ -518,7 +518,7 @@
 
     <!-- CHANGE HERE by your team nexus server -->
 
-    <url>http://localhost:8081/repository/maven-snapshots/</url>
+    <url>http://34.93.220.52:8081/repository/maven-snapshots/</url>
 
   </snapshotRepository>
 
