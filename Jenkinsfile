@@ -53,7 +53,7 @@ node{
         
         withSonarQubeEnv('Sonar')    {
             
-            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=WorkOutQuality${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
+            sh "${mvnHome}/bin/mvn sonar:sonar -Dsonar.projectName=Petclinic${BUILD_NUMBER} -Dv=${BUILD_NUMBER}"
             
             echo '*************Sonar Code Quality Analysis is Successful************'
             
@@ -119,7 +119,7 @@ node{
         
         def mvnHome = tool name: 'MAVEN_HOME', type: 'maven'
         
-        sh "${mvnHome}/bin/mvn deploy -e -X -U -DskipTests -Dmaven.main.skip -Dv=${BUILD_NUMBER}"
+        sh "${mvnHome}/bin/mvn deploy -U -DskipTests -Dmaven.main.skip -Dv=${BUILD_NUMBER}"
 	    
 	    echo '*************Artifacts upload in Nexus is Successful************'
 	    
